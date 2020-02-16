@@ -5,20 +5,32 @@ import * as firebase from 'firebase/app';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(public afAuth: AngularFireAuth) { 
+  errorMessage: string;
+  successMessage: string;
+  constructor(public afAuth: AngularFireAuth) {
 
   }
-  public doGoogleLogin(){
+  public doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
       this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
+        .signInWithPopup(provider)
+        .then(res => {
+          resolve(res);
+        })
+    })
+  }
+  doRegister(email: string, password: string) {
+    console.log(email);
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().signInWithEmailAndPassword(email, password).then(res => {
         resolve(res);
+      }, err => {
+        reject(err)
       })
     })
+
   }
 }

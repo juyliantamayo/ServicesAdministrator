@@ -15,4 +15,7 @@ export class SidevarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  direcionamiento(link :string){
+    location.href = "/"+link;
+  }
 }

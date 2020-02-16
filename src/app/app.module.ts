@@ -9,7 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SidevarComponent } from './components/sidevar/sidevar.component';
-import {IndexComponent} from './components/dashboard/index/index.component';
+import { IndexComponent } from './components/dashboard/index/index.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import {IndexComponent} from './components/dashboard/index/index.component';
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
     AngularFirestoreModule,
-    AngularFireAuthModule,
+    AngularFireAuthModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
