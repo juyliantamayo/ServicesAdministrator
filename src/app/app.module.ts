@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SidevarComponent } from './components/sidevar/sidevar.component';
 import { IndexComponent } from './components/dashboard/index/index.component';
 import { FormsModule } from '@angular/forms';
+import { CategoriesComponent } from './components/dashboard/categories/categories.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     SidevarComponent,
-    IndexComponent
+    IndexComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
