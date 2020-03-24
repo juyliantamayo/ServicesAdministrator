@@ -12,6 +12,8 @@ import { SidevarComponent } from './components/sidevar/sidevar.component';
 import { IndexComponent } from './components/dashboard/index/index.component';
 import { FormsModule } from '@angular/forms';
 import { CategoriesComponent } from './components/dashboard/categories/categories.component';
+import { AddCategoriesComponent } from './components/add-categories/add-categories.component';
+
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { CategoriesComponent } from './components/dashboard/categories/categorie
     LoginComponent,
     SidevarComponent,
     IndexComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AddCategoriesComponent,
   ],
   imports: [
     BrowserModule,
