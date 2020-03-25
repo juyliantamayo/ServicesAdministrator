@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $: any;
 @Component({
   selector: 'app-delete-categorie',
   templateUrl: './delete-categorie.component.html',
