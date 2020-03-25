@@ -8,6 +8,7 @@ import { Categori } from 'src/app/models/categories';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  
   public categoriesArray: Array<Categori> = new Array<Categori>();
   constructor(private catagoriService: CategoriesService) { }
 
@@ -22,4 +23,7 @@ export class CategoriesComponent implements OnInit {
     console.log(this.categoriesArray);
   }
 
+  direcionamiento(link :string){
+    location.href = "/"+link;
+  }
 }
