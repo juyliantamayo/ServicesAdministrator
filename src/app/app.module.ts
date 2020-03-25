@@ -13,6 +13,7 @@ import { IndexComponent } from './components/dashboard/index/index.component';
 import { FormsModule } from '@angular/forms';
 import { CategoriesComponent } from './components/dashboard/categories/categories.component';
 import { AddCategoriesComponent } from './components/add-categories/add-categories.component';
+import { DeleteCategorieComponent } from './components/delete-categorie/delete-categorie.component';
 
 
 
@@ -24,6 +25,7 @@ import { AddCategoriesComponent } from './components/add-categories/add-categori
     IndexComponent,
     CategoriesComponent,
     AddCategoriesComponent,
+    DeleteCategorieComponent,
   ],
   imports: [
     BrowserModule,
