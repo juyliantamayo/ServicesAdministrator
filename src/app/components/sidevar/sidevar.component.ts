@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 declare var $: any;
 @Component({
   selector: 'app-sidevar',
@@ -13,6 +14,7 @@ export class SidevarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   direcionamiento(link :string){

@@ -33,4 +33,16 @@ export class AuthService {
     })
 
   }
+  async logout(){
+   await firebase.auth().signOut();
+  }
+  verifiLoginUser() {
+    firebase.auth().onAuthStateChanged(function (user) {
+      console.log(user);
+      if (user) {
+      } else {
+        location.href = "";
+      }
+    });
+  }
 }

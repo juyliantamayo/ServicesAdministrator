@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "ServicesAdministrator"
+  "defaultProject": "ServicesAdministrator",
+  "cli": {
+    "analytics": false
+  }
 }

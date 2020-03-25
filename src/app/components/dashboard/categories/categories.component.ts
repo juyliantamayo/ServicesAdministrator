@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { Categori } from 'src/app/models/categories';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-categories',
@@ -10,9 +11,10 @@ import { Categori } from 'src/app/models/categories';
 export class CategoriesComponent implements OnInit {
   
   public categoriesArray: Array<Categori> = new Array<Categori>();
-  constructor(private catagoriService: CategoriesService) { }
+  constructor(private catagoriService: CategoriesService,private auth :AuthService) { }
 
   ngOnInit(): void {
+    this.auth.verifiLoginUser()
     this.catagoriService.obtenerCategorias().subscribe((categoriesSnapshot) => {
       this.categoriesArray=new Array();
       categoriesSnapshot.forEach((categoriData) => {
