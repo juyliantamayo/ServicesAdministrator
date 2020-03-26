@@ -37,7 +37,7 @@ export class AuthService {
    await firebase.auth().signOut();
   }
   verifiLoginUser() {
-    firebase.auth().onAuthStateChanged(function (user) {
+    this.afAuth.auth.onAuthStateChanged(function (user) {
       console.log(user);
       if (user) {
       } else {
