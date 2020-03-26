@@ -26,14 +26,15 @@
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">{{item.title}}<i
               class="material-icons right">close</i></span>
-              <br>
+          <br>
           <p>{{item.description}}</p>
         </div>
         <div class="card-action center-align light-blue accent-3">
           <a (click)="direcionamiento('agregar')"><i class="material-icons black-text">create</i></a>
-          <a  (click)="direcionamiento('eliminar')"><i class="material-icons black-text">delete</i></a>
+          <a class="modal-trigger" href="#modal1"><i class="material-icons black-text">delete</i></a>
         </div>
       </div>
+      <app-delete-categorie></app-delete-categorie>
     </div>
   </div>
 </div>
