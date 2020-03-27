@@ -13,7 +13,7 @@ body {
 }
 
 #login-page {
-   width: 500px;
+    width: 500px;
 }
 
 .card {
@@ -26,3 +26,12 @@ body {
      -o-transform: translate(-50%, -50%);
      transform: translate(-50%, -50%);
 }
+
+.input-field input:focus + label {
+    color: #311b92 !important;
+  }
+  /* label underline focus color */
+  .row .input-field input:focus {
+    border-bottom: 1px solid #311b92 !important;
+    box-shadow: 0 1px 0 0 #311b92 !important
+  }
