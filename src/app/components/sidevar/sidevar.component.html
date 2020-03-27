@@ -1,6 +1,28 @@
 <!-- LEFT SIDEBAR	 -->
 <ul id="sidenav-1" class="sidenav sidenav-fixed blue accent-3">
-    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank" (click)="direcionamiento('index')">Index</a></li>
-    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank" (click)="direcionamiento('categorias')">Categorias</a></li>
-    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank" (click)="direcionamiento('servicios')">Servicios</a></li>
+    <li>
+        <div class="user-view purple">
+            <div class="backgorund">
+                <!-- Aqui puede ir una imagen de fondo -->
+                <img src="" alt="">
+            </div>
+            <!-- En este va la imagen del usuario administrador -->
+            <a><img class="circle" src=""></a>
+            <a><span class="white-text name">Nombre del admin</span></a>
+            <a><span class="white-text email">correo del admin</span></a>
+        </div>
+    </li>
+    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank"
+            (click)="direcionamiento('index')">Página prinipal</a></li>
+    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank"
+            (click)="direcionamiento('categorias')">Categorías</a></li>
+    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank"
+            (click)="direcionamiento('servicios')">Servicios</a></li>
+    <li style="margin-top: 9.6cm;">
+        <div class="divider"></div>
+        <div class="container center-align">
+            <a class="waves-effect waves-purple btn-flat"><i class="material-icons right">exit_to_app</i><b>Cerrar Sesión</b></a>
+        </div>
+        
+    </li>
 </ul>
