@@ -15,6 +15,7 @@ import { CategoriesComponent } from './components/dashboard/categories/categorie
 import { AddCategoriesComponent } from './components/dashboard/categories/add-categories/add-categories.component';
 import { DeleteCategorieComponent } from './components/dashboard/categories/delete-categorie/delete-categorie.component';
 import { ServicesComponent } from './components/dashboard/services/services.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 
 
@@ -35,7 +36,7 @@ import { ServicesComponent } from './components/dashboard/services/services.comp
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
     AngularFirestoreModule,
-    AngularFireAuthModule, FormsModule
+    AngularFireAuthModule, FormsModule, AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

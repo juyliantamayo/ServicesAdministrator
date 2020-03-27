@@ -6,7 +6,7 @@
     <div class="nav-wrapper" style="margin-left: 1%;">
       <a (click)="direcionamiento('categorias')" class="brand-logo"> Categorias</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a (click)="direcionamiento('agregar')">Agregar Nueva Categoría</a></li>
+        <li><a (click)="agregar()">Agregar Nueva Categoría</a></li>
       </ul>
     </div>
   </nav>
@@ -16,7 +16,7 @@
     <div class="col s12 m5 l5" *ngFor="let item of categoriesArray" style="height: 100%;">
       <div class="card sticky-action hoverable">
         <div class="card-image waves-effect waves-block waves-light black">
-          <img class="activator" src="{{ item.imagenUrl }}">
+          <img class="activator" src="{{ item.imageURL }}">
         </div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">{{item.title}}<i
@@ -30,7 +30,7 @@
           <p>{{item.description}}</p>
         </div>
         <div class="card-action center-align light-blue accent-3">
-          <a (click)="direcionamiento('agregar')"><i class="material-icons black-text">create</i></a>
+          <a (click)="editar(item)"><i class="material-icons black-text">create</i></a>
           <a class="modal-trigger" href="#modal1"><i class="material-icons black-text">delete</i></a>
         </div>
       </div>
