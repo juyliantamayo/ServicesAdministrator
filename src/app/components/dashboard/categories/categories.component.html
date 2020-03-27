@@ -1,35 +1,40 @@
 <app-sidevar></app-sidevar>
 <br>
 <div class="container" style="margin-left: 25%;">
-    <!-- NavBar -->
-    <nav class="deep-purple darken-2">
-        <div class="nav-wrapper" style="margin-left: 1%;">
-            <a (click)="direcionamiento('categorias')" class="brand-logo"> Categorias</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a (click)="direcionamiento('agregar')">Agregar Nueva Categoría</a></li>
-                <li><a href="#">Eliminar Categoria</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Card de los Servicios disponibles -->
-    <div class="row">
-        <div class="col s12 m6 l4 xl3" *ngFor="let item of categoriesArray" style="height: 100%;">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="{{item.imagenUrl}}">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">{{item.title}}<i
-              class="material-icons right">more_vert</i></span>
-                    <p><span class=" activator grey-text text-darken-1"></span></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{item.title}}<i
-              class="material-icons right">close</i></span>
-                    <p>{{item.description}}</p>
-                </div>
-            </div>
-        </div>
+  <!-- NavBar -->
+  <nav class="deep-purple darken-2">
+    <div class="nav-wrapper" style="margin-left: 1%;">
+      <a (click)="direcionamiento('categorias')" class="brand-logo"> Categorias</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a (click)="direcionamiento('agregar')">Agregar Nueva Categoría</a></li>
+      </ul>
     </div>
+  </nav>
+
+  <!-- Card de los Servicios disponibles -->
+  <div class="row">
+    <div class="col s12 m5 l5" *ngFor="let item of categoriesArray" style="height: 100%;">
+      <div class="card sticky-action hoverable">
+        <div class="card-image waves-effect waves-block waves-light black">
+          <img class="activator" src="{{ item.imagenUrl }}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{item.title}}<i
+              class="material-icons right">more_vert</i></span>
+          <p><span class=" activator grey-text text-darken-1"></span></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{item.title}}<i
+              class="material-icons right">close</i></span>
+          <br>
+          <p>{{item.description}}</p>
+        </div>
+        <div class="card-action center-align light-blue accent-3">
+          <a (click)="direcionamiento('agregar')"><i class="material-icons black-text">create</i></a>
+          <a class="modal-trigger" href="#modal1"><i class="material-icons black-text">delete</i></a>
+        </div>
+      </div>
+      <app-delete-categorie></app-delete-categorie>
+    </div>
+  </div>
 </div>
