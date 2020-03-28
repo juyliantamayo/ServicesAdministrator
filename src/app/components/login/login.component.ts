@@ -24,14 +24,10 @@ export class LoginComponent implements OnInit {
   }
   tryRegister() {
     console.log(this.email, this.password);
-    this.auth.doRegister(this.email, this.password)
-      .then(res => {
-        location.href = "/index"
-      }, err => {
-        console.log(err);
-        this.errorMessage = err.message;
-        this.successMessage = "";
-      })
+    this.auth.doRegister(this.email, this.password).then(()=>{
+      window.location.href="/index"
+    });
+     
   }
 
 }

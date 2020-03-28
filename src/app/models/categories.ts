@@ -1,10 +1,11 @@
 export class Categori {
     description: string;
-    imagenUrl: string;
+    imageURL: string;
     title: string;
-    constructor(descripcion: string, imagenURL: string, title: string) {
-        this.description = descripcion;
-        this.imagenUrl = imagenURL;
-        this.title = title;
+    
+    constructor(){
+        this.description=""
+        this.imageURL=""
+        this.title=""
     }
 }
