@@ -12,7 +12,7 @@ export class FireStorageService {
     console.log(path)
     const file = event;
     const filePath = path;
-    this.angularFireStorage.upload(filePath, file).then(() => {
+   return  this.angularFireStorage.upload(filePath, file).then(() => {
       console.log(path);
     }).catch((error) => {
       alert(error);

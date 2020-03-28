@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { User } from 'src/app/models/User';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   errorMessage: string;
   successMessage: string;
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
 
   }
   public doGoogleLogin() {
@@ -23,22 +25,24 @@ export class AuthService {
     })
   }
   doRegister(email: string, password: string) {
-    console.log(email);
-    return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(email, password).then(res => {
-        resolve(res);
-      }, err => {
-        reject(err)
+
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(async (data) => {
+      console.log(data)
+      await this.firestore.collection("users").doc(data.user.uid).get().toPromise().then((user) => {
+        console.log(user.data())
+        let userL: User = JSON.parse(JSON.stringify(user.data()));
+        window.localStorage.setItem("user", JSON.stringify(userL))
       })
     })
 
   }
-  async logout(){
-   await firebase.auth().signOut();
+  async logout() {
+    await firebase.auth().signOut();
+
   }
   verifiLoginUser() {
     this.afAuth.auth.onAuthStateChanged(function (user) {
-      console.log(user);
+
       if (user) {
       } else {
         location.href = "";

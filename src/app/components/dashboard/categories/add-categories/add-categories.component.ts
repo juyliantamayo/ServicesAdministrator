@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Categori } from 'src/app/models/categories';
 import { environment } from 'src/environments/environment';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 declare var $: any;
 @Component({
   selector: 'app-add-categories',
@@ -10,9 +11,10 @@ declare var $: any;
 })
 export class AddCategoriesComponent implements OnInit {
   Categori: Categori = new Categori();
-  constructor(private categoriesService: CategoriesService) { }
+  constructor(private categoriesService: CategoriesService, private auth: AuthService) { }
   filej: File = null;
   ngOnInit(): void {
+    this.auth.verifiLoginUser()
     if (window.localStorage.getItem("editar") != null) {
       this.Categori = JSON.parse(window.localStorage.getItem("editar"));
     }
@@ -24,7 +26,12 @@ export class AddCategoriesComponent implements OnInit {
     location.href = "/" + link;
   }
   update() {
-    this.categoriesService.updateCategory(this.Categori, this.filej)
+    this.categoriesService.updateCategory(this.Categori, this.filej).then((dt)=>{
+      location.href = "/categorias";
+    })
+  }
+  editaroagregar(): boolean {
+    return window.localStorage.getItem("editar") == undefined
   }
   changeimgae(event: FileList) {
     var file: File = event.item(0),
@@ -43,5 +50,11 @@ export class AddCategoriesComponent implements OnInit {
     reader.readAsDataURL(file);
 
 
+  }
+  agregarCategoria() {
+    
+    this.categoriesService.crearCategoria(this.Categori, this.filej).then(() => {
+      location.href = "/categorias";
+    });
   }
 }
