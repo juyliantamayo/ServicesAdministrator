@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services/services.service';
 import Service from 'src/app/models/sertvices';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
+import { toast } from 'materialize-css';
 import { UserService } from 'src/app/services/users/user.service';
 import { User } from 'src/app/models/User';
 import { firestore } from 'firebase';
-
+import { CategoriesService } from 'src/app/services/categories/categories.service';
+import { Categori } from 'src/app/models/categories';
+declare var $: any;
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -15,12 +17,28 @@ import { firestore } from 'firebase';
 export class ServicesComponent implements OnInit {
   Arrayservice: Array<Service> = new Array<Service>();
   UsersMap: Map<string, User> = new Map<string, User>();
-  constructor(private servicesService: ServicesService, private auth: AuthService, private userService: UserService) { }
-  ngOnInit(): void {
+  Arraycategori: Array<Categori> = new Array<Categori>();
+  stringFiltro: string;
+  ArrayFiltro: Array<string> = new Array<string>();
+  constructor(private servicesService: ServicesService, private auth: AuthService, private userService: UserService, private categoriService: CategoriesService) { }
+  async ngOnInit(): Promise<void> {
     this.auth.verifiLoginUser()
+    await this.categoriService.obtenerCategorias().subscribe((categoriesSnapshot) => {
+      $('.dropdown-trigger').dropdown();
+      this.Arraycategori = new Array();
+      for (let index = 0; index <= categoriesSnapshot.length; index++) {
+        const element = categoriesSnapshot[index];
+        var categori: Categori = JSON.parse(JSON.stringify(element.payload.doc.data()));
+        this.Arraycategori.push(categori);
+        console.log(this.Arraycategori)
+      }
+
+    });
+
     this.UsersMap = new Map<string, User>();
     this.Arrayservice = new Array<Service>();
     this.servicesService.obtenerServicesWhitCategory().subscribe((data) => {
+      this.Arrayservice = new Array<Service>();
       data.map((serviceFirebase) => {
         let service: Service = JSON.parse(JSON.stringify(serviceFirebase.payload.doc.data()));
         this.Arrayservice.push(service);
@@ -37,10 +55,58 @@ export class ServicesComponent implements OnInit {
   getUser(userId: string) {
     console.log()
   }
-  getDate(timeStamp:any) {
-    console.log(timeStamp);
-    let dateN: Date=new Date( timeStamp["seconds"]* 1000);
+  getDate(timeStamp: any) {
+
+    let dateN: Date = new Date(timeStamp["seconds"] * 1000);
     return dateN.getDay() + "/" + dateN.getMonth() + "/" + dateN.getFullYear()
   }
+  putService(item: Service, state: boolean) {
+    item.isApproved = state;
+    console.log(item)
+    this.servicesService.updateService(item).then((data) => {
+      if (item.isApproved) {
+        toast({ html: 'Servicio Activado' }, 4000)
+      } else {
+        toast({ html: 'Servicio Desactivado' }, 4000)
+      }
 
+    })
+  }
+  getIdService(item: Service) {
+    return item.serviceUid;
+  }
+  obtenerValueCategori(item: Categori) {
+    return item.title
+  }
+  agregarFiltro(categori: string) {
+    if (this.ArrayFiltro.indexOf(categori) > -1) {
+      this.ArrayFiltro.splice(this.ArrayFiltro.indexOf(categori), 1)
+    } else {
+      this.ArrayFiltro.push(categori);
+    
+    }
+    this.cambiarStringFilter()
+  }
+  cambiarStringFilter() {
+    this.stringFiltro="";
+    for (let index = 0; index < this.ArrayFiltro.length; index++) {
+     if (index>0) {
+       this.stringFiltro+=","+this.ArrayFiltro[index]
+     }else{
+      this.stringFiltro+=this.ArrayFiltro[index]
+     }
+      
+    }
+  }
+  mostrarCarta(categori:string){
+    if (this.ArrayFiltro.length>0) {
+      if (this.ArrayFiltro.indexOf(categori)>-1) {
+        return true;
+      }
+      return false;
+    }else{
+      return true;
+    }
+   
+  }
 }

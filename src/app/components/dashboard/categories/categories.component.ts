@@ -25,14 +25,14 @@ export class CategoriesComponent implements OnInit {
         this.categoriesArray.push(categori);
       });
     });
-    console.log(this.categoriesArray);
+    
   }
   editar(categori: Categori) {
     window.localStorage.setItem("editar", JSON.stringify(categori));
     this.direcionamiento("agregar")
   }
   agregar() {
-    window.localStorage.clear();
+    window.localStorage.removeItem("editar");
     this.direcionamiento("agregar");
   }
   direcionamiento(link: string) {

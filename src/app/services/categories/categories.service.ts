@@ -28,10 +28,13 @@ export class CategoriesService {
   updateCategory(category: Categori, file: File) {
     let categori: Categori = JSON.parse(window.localStorage.getItem("editar"))
     return this.firestore.collection("categories", ref => ref.where("title", "==", categori.title)).get().forEach(async (data) => {
-     await this.firestore.collection("categories").doc(data.docs[0].id).set(category)
-      if (file != null) {
-        this.storage.uploadFile(file, "Categories/" + data.docs[0].id + ".png")
-      }
+      console.log(category)
+      await this.firestore.collection("categories").doc(data.docs[0].id).set(category).then(async (dt) => {
+        if (file != null) {
+         await this.storage.uploadFile(file, "Categories/" + data.docs[0].id + ".png")
+        }
+      })
+
     })
   }
 }

@@ -14,6 +14,6 @@ export class ServicesService {
   }
   public updateService(service: Service) {
     console.log(service);
-    return this.firestore.collection("services").doc(service.serviceUid).set(service);
+    return this.firestore.collection("services").doc(service.serviceUid).set(JSON.parse(JSON.stringify(service)));
   }
 }
