@@ -9,8 +9,13 @@ export class ServicesService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  public obtenerServicesWhitCategory() {
+  public obtenerServices() {
+
     return this.firestore.collection("services").snapshotChanges();
+  }
+  public obtenerServiceswhitCategori(categori: string) {
+
+    return this.firestore.collection("services",ref=>ref.where('category','==',categori)).snapshotChanges();
   }
   public updateService(service: Service) {
     console.log(service);

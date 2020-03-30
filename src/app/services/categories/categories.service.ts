@@ -25,6 +25,9 @@ export class CategoriesService {
   public obtenerCategorias() {
     return this.firestore.collection("categories").snapshotChanges();
   }
+  public  obtenerCategoriaswhittitle( title :string) {
+    return  this.firestore.collection("categories",ref=>ref.where("title","==",title)).snapshotChanges();
+  }
   updateCategory(category: Categori, file: File) {
     let categori: Categori = JSON.parse(window.localStorage.getItem("editar"))
     return this.firestore.collection("categories", ref => ref.where("title", "==", categori.title)).get().forEach(async (data) => {

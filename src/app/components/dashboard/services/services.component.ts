@@ -37,7 +37,7 @@ export class ServicesComponent implements OnInit {
 
     this.UsersMap = new Map<string, User>();
     this.Arrayservice = new Array<Service>();
-    this.servicesService.obtenerServicesWhitCategory().subscribe((data) => {
+    this.servicesService.obtenerServices().subscribe((data) => {
       this.Arrayservice = new Array<Service>();
       data.map((serviceFirebase) => {
         let service: Service = JSON.parse(JSON.stringify(serviceFirebase.payload.doc.data()));
