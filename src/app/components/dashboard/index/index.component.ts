@@ -12,6 +12,11 @@ declare var $: any;
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
+  gradientpie: boolean = true;
+
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
   labelStringDataFirschar: any[];
   view: any[] = [700, 400];
   showXAxis = true;
@@ -22,7 +27,9 @@ export class IndexComponent implements OnInit {
   xAxisLabel = 'Categoria';
   showYAxisLabel = true;
   yAxisLabel = 'Servicios \n creados';
-
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
   constructor(private auth: AuthService, private categoryservice: CategoriesService, private serviceService: ServicesService) {
 
 
@@ -30,16 +37,26 @@ export class IndexComponent implements OnInit {
 
 
   async ngOnInit(): Promise<void> {
-    
+
     await this.categoryservice.obtenerCategorias().subscribe(async (data) => {
+
       let datachartpibot: Array<Graficas> = new Array<Graficas>();
       await data.forEach(async (category) => {
         await this.serviceService.obtenerServiceswhitCategori(category.payload.doc.data()["title"]).subscribe((servicesnapshot) => {
+          console.log("activo")
           let graficapibote: Graficas = new Graficas();
           graficapibote.name = category.payload.doc.data()["title"];
           graficapibote.value = servicesnapshot.length
-          datachartpibot.push(graficapibote);
-          this.labelStringDataFirschar=JSON.parse(JSON.stringify(datachartpibot));
+          let categoripibot = datachartpibot.find((item) =>
+            item.name == graficapibote.name
+          )
+          if (categoripibot) {
+            datachartpibot[datachartpibot.indexOf(categoripibot)].value = graficapibote.value
+          } else {
+            datachartpibot.push(graficapibote);
+          }
+
+          this.labelStringDataFirschar = JSON.parse(JSON.stringify(datachartpibot));
         })
       })
 

@@ -2,6 +2,8 @@
 <div class="container" style="margin-left: 25%;">
     <div class="row">
         <div class="col  ">
+            <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar" [gradient]="gradientpie" [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)">
+            </ngx-charts-pie-chart>
             <ngx-charts-bar-vertical [view]="view" [results]="labelStringDataFirschar" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
                 [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
             </ngx-charts-bar-vertical>
