@@ -27,7 +27,7 @@ export class AddCategoriesComponent implements OnInit {
   }
   update() {
     this.categoriesService.updateCategory(this.Categori, this.filej).then((dt)=>{
-      location.href = "/categorias";
+      
     })
   }
   editaroagregar(): boolean {

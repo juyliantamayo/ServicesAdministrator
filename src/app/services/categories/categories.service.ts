@@ -34,7 +34,13 @@ export class CategoriesService {
       console.log(category)
       await this.firestore.collection("categories").doc(data.docs[0].id).set(category).then(async (dt) => {
         if (file != null) {
-         await this.storage.uploadFile(file, "Categories/" + data.docs[0].id + ".png")
+         await this.storage.uploadFile(file, "Categories/" + data.docs[0].id + ".png").then(()=>{
+          alert("Categoria "+category.title+" Modificada")
+          location.href = "/categorias";
+         })
+        }else{
+          alert("Categoria "+category.title+" Modificada")
+          location.href = "/categorias";
         }
       })
 

@@ -16,7 +16,7 @@ import { AddCategoriesComponent } from './components/dashboard/categories/add-ca
 import { DeleteCategorieComponent } from './components/dashboard/categories/delete-categorie/delete-categorie.component';
 import { ServicesComponent } from './components/dashboard/services/services.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
     AngularFirestoreModule,
-    AngularFireAuthModule, FormsModule, AngularFireStorageModule
+    AngularFireAuthModule, FormsModule, AngularFireStorageModule,NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
