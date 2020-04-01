@@ -83,30 +83,33 @@ export class ServicesComponent implements OnInit {
       this.ArrayFiltro.splice(this.ArrayFiltro.indexOf(categori), 1)
     } else {
       this.ArrayFiltro.push(categori);
-    
+
     }
     this.cambiarStringFilter()
   }
   cambiarStringFilter() {
-    this.stringFiltro="";
+    this.stringFiltro = "";
     for (let index = 0; index < this.ArrayFiltro.length; index++) {
-     if (index>0) {
-       this.stringFiltro+=","+this.ArrayFiltro[index]
-     }else{
-      this.stringFiltro+=this.ArrayFiltro[index]
-     }
-      
+      if (index > 0) {
+        this.stringFiltro += "," + this.ArrayFiltro[index]
+      } else {
+        this.stringFiltro += this.ArrayFiltro[index]
+      }
+
     }
   }
-  mostrarCarta(categori:string){
-    if (this.ArrayFiltro.length>0) {
-      if (this.ArrayFiltro.indexOf(categori)>-1) {
+  mostrarCarta(categori: string) {
+    if (this.ArrayFiltro.length > 0) {
+      if (this.ArrayFiltro.indexOf(categori) > -1) {
         return true;
       }
       return false;
-    }else{
+    } else {
       return true;
     }
-   
+
+  }
+  direcionamiento(ruta: string) {
+    location.href = "/" + ruta
   }
 }

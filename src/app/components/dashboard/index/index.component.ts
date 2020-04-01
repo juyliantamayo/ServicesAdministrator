@@ -12,13 +12,13 @@ declare var $: any;
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-  gradientpie: boolean = true;
+  gradientpie: boolean = false;
 
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
   labelStringDataFirschar: any[];
-  view: any[] = [700, 400];
+  view: any[] = [500, 400];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -34,7 +34,9 @@ export class IndexComponent implements OnInit {
 
 
   }
-
+  direcionamiento(ruta: string) {
+    location.href = "/" + ruta
+  }
 
   async ngOnInit(): Promise<void> {
 

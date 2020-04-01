@@ -1,13 +1,23 @@
 <app-sidevar></app-sidevar>
+
 <div class="container" style="margin-left: 25%;">
+    <nav style="background-color: #37003c;">
+        <div class="nav-wrapper" style="margin-left: 1%;">
+            <a (click)="direcionamiento('index')" class="brand-logo"> Página principal</a>
+
+        </div>
+    </nav>
     <div class="row">
-        <div class="col  ">
+        <div class="col s6 ">
             <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar" [gradient]="gradientpie" [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut">
             </ngx-charts-pie-chart>
-            <ngx-charts-bar-vertical [view]=" view " [results]="labelStringDataFirschar " [gradient]="gradient " [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel " [showYAxisLabel]="showYAxisLabel
-                " [xAxisLabel]="xAxisLabel " [yAxisLabel]="yAxisLabel ">
-            </ngx-charts-bar-vertical>
 
+
+        </div>
+        <div class="col s6">
+            <ngx-charts-bar-vertical [view]=" view " [results]="labelStringDataFirschar " [gradient]="gradient " [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel " [showYAxisLabel]="showYAxisLabel
+            " [xAxisLabel]="xAxisLabel " [yAxisLabel]="yAxisLabel ">
+            </ngx-charts-bar-vertical>
         </div>
     </div>
 </div>
