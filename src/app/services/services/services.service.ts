@@ -19,6 +19,6 @@ export class ServicesService {
   }
   public updateService(service: Service) {
     console.log(service);
-    return this.firestore.collection("services").doc(service.serviceUid).set(JSON.parse(JSON.stringify(service)));
+    return this.firestore.collection("services").doc(service.serviceUid).set({"isApproved":service.isApproved},{merge:true});
   }
 }

@@ -1,3 +1,6 @@
+import { firestore } from 'firebase';
+
+
 export default class Service {
     serviceUid: string;
     userUid: string;
@@ -7,7 +10,9 @@ export default class Service {
     isApproved: Boolean;
     charge: number;
     imageURL: String;
-    constructor(serviceUid, userUid, category, title, description, isApproved, charge, imageURL) {
+    createdAt: firestore.Timestamp;
+    enable: boolean;
+    constructor(serviceUid, userUid, category, title, description, isApproved, charge, imageURL, createdAt, enable) {
         this.serviceUid = serviceUid;
         this.userUid = userUid;
         this.category = category;
@@ -16,5 +21,7 @@ export default class Service {
         this.isApproved = isApproved;
         this.charge = charge;
         this.imageURL = imageURL;
+        this.createdAt = createdAt;
+        this.enable = enable;
     }
 }
