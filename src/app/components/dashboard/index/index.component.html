@@ -7,17 +7,34 @@
 
         </div>
     </nav>
-    <div class="row">
-        <div class="col s6 ">
-            <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar" [gradient]="gradientpie" [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut">
+    <div class="row ">
+        <div class="col s12">
+            <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar"
+                [gradient]="gradientpie" [legend]="showLegend" [legendPosition]="legendPosition" [labels]="showLabels"
+                [doughnut]="isDoughnut">
             </ngx-charts-pie-chart>
 
 
         </div>
+        
+    </div>
+    <div class="row">
         <div class="col s6">
-            <ngx-charts-bar-vertical [view]=" view " [results]="labelStringDataFirschar " [gradient]="gradient " [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel " [showYAxisLabel]="showYAxisLabel
+            <ngx-charts-bar-vertical [view]=" view " [scheme]="colorScheme" [results]="labelStringDataFirschar " [gradient]="gradient "
+                [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel "
+                [showYAxisLabel]="showYAxisLabel
             " [xAxisLabel]="xAxisLabel " [yAxisLabel]="yAxisLabel ">
             </ngx-charts-bar-vertical>
         </div>
+        <div class="col s6">
+            <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar2" [gradient]="gradient"
+                [xAxis]="showXAxisSer" [yAxis]="showYAxisSer" [legend]="showLegendSer" [showXAxisLabel]="showXAxisLabelSer"
+                [showYAxisLabel]="showYAxisLabelSer" [xAxisLabel]="xAxisLabelSer" [yAxisLabel]="yAxisLabelSer"
+                >
+            </ngx-charts-bar-horizontal>
+            
+        </div>
     </div>
+
+
 </div>
