@@ -8,7 +8,10 @@ import { User } from 'src/app/models/User';
 import { firestore } from 'firebase';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { Categori } from 'src/app/models/categories';
+
+
 declare var $: any;
+declare var M: any;
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -19,9 +22,14 @@ export class ServicesComponent implements OnInit {
   UsersMap: Map<string, User> = new Map<string, User>();
   Arraycategori: Array<Categori> = new Array<Categori>();
   stringFiltro: string;
+  servicioaeliminar: Service;
   ArrayFiltro: Array<string> = new Array<string>();
   constructor(private servicesService: ServicesService, private auth: AuthService, private userService: UserService, private categoriService: CategoriesService) { }
   async ngOnInit(): Promise<void> {
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+
     this.auth.verifiLoginUser()
     await this.categoriService.obtenerCategorias().subscribe((categoriesSnapshot) => {
       $('.dropdown-trigger').dropdown();
@@ -52,6 +60,7 @@ export class ServicesComponent implements OnInit {
 
     })
   }
+
   getUser(userId: string) {
     console.log()
   }
@@ -111,5 +120,11 @@ export class ServicesComponent implements OnInit {
   }
   direcionamiento(ruta: string) {
     location.href = "/" + ruta
+  }
+  deleteService(item: Service) {
+    if (confirm("Al elminar la categoría, no podrá revertir esta acción más adelante.\n ¿Está seguro que desea eliminar esta categoría?"))
+      this.servicesService.deleteService(item).then((data) => {
+        alert("Servicio eliminado")
+      })
   }
 }

@@ -78,21 +78,33 @@
                     </div>
                     <div class="card-action accent-3 " style="background-color: #37003c;">
                         <div class="container center-align">
-                            <div class="switch">
-                                <label class="deep-purple-text text-darken-1">
-                            <a class="waves-effect  waves-light btn" *ngIf="item.isApproved"
-                                (click)=" putService(item,false)" style="background-color: #ff316e;">Desactivar</a>
-                            <a class="waves-effect  waves-light btn" *ngIf="!item.isApproved"
-                                (click)=" putService(item,true)" style="background-color: #02894e;">Activar</a>
-                        </label>
-                            </div>
-                        </div>
+                            <div class="row">
+                                <div class="col s6">
+                                    <div class="switch" style="width: 100%;">
+                                        <label class="deep-purple-text text-darken-1" style="width: 100%;">
+                                <a class="waves-effect  waves-light btn" *ngIf="item.isApproved"
+                                    (click)=" putService(item,false)" style="background-color: #ff316e;width: 100%;">Desactivar</a>
+                                <a class="waves-effect  waves-light btn" *ngIf="!item.isApproved"
+                                    (click)=" putService(item,true)" style="background-color: #02894e;">Activar</a>
+                            </label>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="switch" style="width: 100%;">
+                                        <label class="deep-purple-text text-darken-1" style="width: 100%;">
+                                <a class="waves-effect  waves-light btn" 
+                                    (click)=" deleteService(item)" style="background-color: #ff0000;width: 100%;">Eliminar</a>
+                                    </label>
+                                    </div>
+                                </div>
 
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
-
-
     </div>
-</div>
