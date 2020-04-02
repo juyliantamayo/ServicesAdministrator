@@ -1,0 +1,38 @@
+<div id="login-page" class="row" style="padding-top: 4cm;">
+    <div class="col s12 z-depth-6 card-panel center-align">
+        <form class="login-form">
+            <br>
+            <div class="row" >
+                <h1 class="deep-purple-text text-darken-4" style="font-size: 1cm;"><b>App Services</b></h1>
+                <h2 class="deep-purple-text text-darken-4" style="font-size: 0.6cm;">Iniciar sesión</h2>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 deep-purple-text text-darken-4">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">mail_outline</i>
+                    <input class="validate" id="email" type="email" [(ngModel)]="email" #ctrl="ngModel" required  [ngModelOptions]="{standalone: true}">
+                    <label  for="email" data-error="wrong" data-success="right">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix deep-purple-text text-darken-4">lock_outline</i>
+                    <input id="password" type="password" [(ngModel)]="password" #ctrl="ngModel" required  [ngModelOptions]="{standalone: true}">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <label class="error">{{errorMessage}}</label>
+            <label class="success">{{successMessage}}</label>
+            <div class="row">
+                <div class="input-field col s12">
+                    <a href="#" class="btn waves-effect waves-light col s12 purple darken-4" (click)="tryRegister()">Ingresar</a>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="input-field col s12">
+                    <a href="#" class="btn waves-effect waves-light col s12 red" (click)="googleSing()">Ingresar con google</a>
+                </div>
+            </div> -->
+
+        </form>
+    </div>
+</div>

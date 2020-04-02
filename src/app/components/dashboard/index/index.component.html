@@ -1,0 +1,26 @@
+<app-sidevar></app-sidevar>
+
+<div class="container" style="margin-left: 25%;">
+    <nav style="background-color: #37003c;">
+        <div class="nav-wrapper" style="margin-left: 1%;">
+            <a (click)="direcionamiento('index')" class="brand-logo"> Página principal</a>
+
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col s6">
+            <ngx-charts-bar-vertical [view]=" view " [scheme]="colorScheme" [results]="labelStringDataFirschar " [gradient]="gradient " [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel " [showYAxisLabel]="showYAxisLabel
+            " [xAxisLabel]="xAxisLabel " [yAxisLabel]="yAxisLabel ">
+            </ngx-charts-bar-vertical>
+        </div>
+        <div class="col s6">
+            <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar2" [gradient]="gradient" [xAxis]="showXAxisSer" [yAxis]="showYAxisSer" [legend]="showLegendSer" [showXAxisLabel]="showXAxisLabelSer" [showYAxisLabel]="showYAxisLabelSer"
+                [xAxisLabel]="xAxisLabelSer" [yAxisLabel]="yAxisLabelSer">
+            </ngx-charts-bar-horizontal>
+
+        </div>
+    </div>
+
+
+</div>

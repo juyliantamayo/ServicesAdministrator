@@ -1,0 +1,22 @@
+<!-- LEFT SIDEBAR	 -->
+<ul id="sidenav-1" class="sidenav sidenav-fixed " style="background-color: #37003c;">
+    <li>
+        <div class="user-view " style="background-color: #ff316e;">
+
+            <!-- En este va la imagen del usuario administrador -->
+            <a><img class="circle" src="{{this.userAdmin.imageURL}}"></a>
+            <a><span class="white-text name">{{this.userAdmin.name}}</span></a>
+            <a><span class="white-text email">{{this.userAdmin.email}}</span></a>
+        </div>
+    </li>
+    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank" (click)="direcionamiento('index')">Página prinipal</a></li>
+    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank" (click)="direcionamiento('categorias')">Categorías</a></li>
+    <li><a class="waves-effect waves-purple grey-text text-lighten-5" target="_blank" (click)="direcionamiento('servicios')">Servicios</a></li>
+    <li style="margin-top: 9.6cm;">
+        <div class="divider"></div>
+        <div class="container center-align">
+            <a class="waves-effect waves-white btn-flat" (click)="singout()" style="color: white;"><i class="material-icons right">exit_to_app</i><b>Cerrar Sesión</b></a>
+        </div>
+
+    </li>
+</ul>
