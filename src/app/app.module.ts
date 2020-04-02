@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SidevarComponent } from './components/sidevar/sidevar.component';
 import { IndexComponent } from './components/dashboard/index/index.component';
@@ -34,9 +34,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
     AngularFirestoreModule,
-    AngularFireAuthModule, FormsModule, AngularFireStorageModule,NgxChartsModule
+    AngularFireAuthModule, FormsModule, AngularFireStorageModule, NgxChartsModule
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

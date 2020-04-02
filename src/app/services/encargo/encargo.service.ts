@@ -7,14 +7,14 @@ import { Categori } from 'src/app/models/categories';
 })
 export class EncargoService {
   updateEncargo(encargo: Encargo) {
-    this.firestore.collection("services").doc(encargo.serviceUid).set(encargo)
+    this.firestore.collection('services').doc(encargo.serviceUid).set(encargo);
   }
 
   constructor(private firestore: AngularFirestore) {
 
   }
   getEncargoWhenCategory(category: string) {
-    return this.firestore.collection("services", ref => ref.where("category", "==", category)).get()
+    return this.firestore.collection('services', ref => ref.where('category', '==', category)).get();
   }
- 
+
 }

@@ -7,27 +7,27 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public email: string="";
-  public password: string="";
+  public email = '';
+  public password = '';
   errorMessage: string;
   successMessage: string;
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.logout()
+    this.auth.logout();
   }
   googleSing() {
     this.auth.doGoogleLogin().then(() => {
-      location.href = "/index"
+      location.href = '/index';
     });
 
   }
   tryRegister() {
     console.log(this.email, this.password);
-    this.auth.doRegister(this.email, this.password).then(()=>{
-      window.location.href="/index"
+    this.auth.doRegister(this.email, this.password).then(() => {
+      window.location.href = '/index';
     });
-     
+
   }
 
 }

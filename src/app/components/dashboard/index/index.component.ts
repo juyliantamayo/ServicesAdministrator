@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -27,12 +28,12 @@ export class IndexComponent implements OnInit {
   yAxisLabelSer = 'Servicios Creados';
   labelStringDataFirschar2: any[];
 
-  gradientpie: boolean = false;
+  gradientpie = false;
 
 
-  showLabels: boolean = true;
-  isDoughnut: boolean = false;
-  legendPosition: string = 'below';
+  showLabels = true;
+  isDoughnut = false;
+  legendPosition = 'below';
   labelStringDataFirschar: any[];
   view: any[] = [500, 400];
   showXAxis = true;
@@ -51,83 +52,86 @@ export class IndexComponent implements OnInit {
 
   }
   direcionamiento(ruta: string) {
-    location.href = "/" + ruta
+    location.href = '/' + ruta;
   }
 
   async ngOnInit(): Promise<void> {
 
-    var meses = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+    const meses = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
     ];
 
-    //Funcion para agregar datos a la grafica de servicios por mes.
+    // Funcion para agregar datos a la grafica de servicios por mes.
     await this.serviceService.obtenerServices().subscribe((data) => {
-      let datachartpibot: Array<Graficas> = new Array<Graficas>();
-      let contador: number = 0;
+      const datachartpibot: Array<Graficas> = new Array<Graficas>();
+      let contador = 0;
 
       data.forEach((servicio) => {
-        var fecha: string = moment(servicio.payload.doc.data()['createdAt'].toDate()).format("MMMM");
-        console.log("Mes: " + fecha);
-        let graficapibote: Graficas = new Graficas();
         
+        const fecha: string = moment(servicio.payload.doc.data()['createdAt'].toDate()).format('MMMM');
+        
+        console.log('Mes: ' + fecha);
+        const graficapibote: Graficas = new Graficas();
+
         for (let index = 0; index < meses.length; index++) {
 
-          var element = meses[index].toString();
+          const element = meses[index].toString();
 
           if (element == fecha) {
             graficapibote.name = meses[index].toString();
             graficapibote.value = contador++;
-            console.log("Se agrego en el mes = " + meses[index].toString() + " hay " + contador)
+            console.log('Se agrego en el mes = ' + meses[index].toString() + ' hay ' + contador);
           } else {
-            console.log("no entro");
+            console.log('no entro');
           }
         }
         datachartpibot.push(graficapibote);
-      })
+      });
       this.labelStringDataFirschar2 = JSON.parse(JSON.stringify(datachartpibot));
-    })
+    });
 
     await this.categoryservice.obtenerCategorias().subscribe(async (data) => {
 
-      let datachartpibot: Array<Graficas> = new Array<Graficas>();
+      const datachartpibot: Array<Graficas> = new Array<Graficas>();
       await data.forEach(async (category) => {
-        await this.serviceService.obtenerServiceswhitCategori(category.payload.doc.data()["title"]).subscribe((servicesnapshot) => {
-          console.log("activo")
-          let graficapibote: Graficas = new Graficas();
-          graficapibote.name = category.payload.doc.data()["title"];
-          graficapibote.value = servicesnapshot.length
-          let categoripibot = datachartpibot.find((item) =>
+        await this.serviceService.obtenerServiceswhitCategori(category.payload.doc.data()['title']).subscribe((servicesnapshot) => {
+          console.log('activo');
+          const graficapibote: Graficas = new Graficas();
+          graficapibote.name = category.payload.doc.data()['title'];
+          graficapibote.value = servicesnapshot.length;
+          const categoripibot = datachartpibot.find((item) =>
             item.name == graficapibote.name
-          )
+          );
           if (categoripibot) {
-            datachartpibot[datachartpibot.indexOf(categoripibot)].value = graficapibote.value
+            datachartpibot[datachartpibot.indexOf(categoripibot)].value = graficapibote.value;
           } else {
             datachartpibot.push(graficapibote);
           }
 
           this.labelStringDataFirschar = JSON.parse(JSON.stringify(datachartpibot));
-        })
-      })
+        });
+      });
 
 
-    })
+    });
 
   }
   onSelect() {
 
-    console.log(this.labelStringDataFirschar)
+    console.log(this.labelStringDataFirschar);
   }
 
 
 }
+/* tslint:enable*/

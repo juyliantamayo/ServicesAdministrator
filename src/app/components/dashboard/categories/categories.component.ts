@@ -17,31 +17,32 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.auth.verifiLoginUser()
+    this.auth.verifiLoginUser();
     this.catagoriService.obtenerCategorias().subscribe((categoriesSnapshot) => {
       this.categoriesArray = new Array();
       categoriesSnapshot.forEach((categoriData) => {
-        var categori: Categori = JSON.parse(JSON.stringify(categoriData.payload.doc.data()));
+        const categori: Categori = JSON.parse(JSON.stringify(categoriData.payload.doc.data()));
         this.categoriesArray.push(categori);
       });
     });
 
   }
   editar(categori: Categori) {
-    window.localStorage.setItem("editar", JSON.stringify(categori));
-    this.direcionamiento("agregar")
+    window.localStorage.setItem('editar', JSON.stringify(categori));
+    this.direcionamiento('agregar');
   }
   agregar() {
-    window.localStorage.removeItem("editar");
-    this.direcionamiento("agregar");
+    window.localStorage.removeItem('editar');
+    this.direcionamiento('agregar');
   }
   direcionamiento(link: string) {
-    location.href = "/" + link;
+    location.href = '/' + link;
   }
   eliminar(item: Categori) {
-    if (confirm("Al elminar la categoría, no podrá revertir esta acción más adelante.\n ¿Está seguro que desea eliminar esta categoría?"))
+    if (confirm('Al elminar la categoría, no podrá revertir esta acción más adelante.\n ¿Está seguro que desea eliminar esta categoría?')) {
       this.catagoriService.deleteCategory(item).then((data) => {
-        alert("Categoría eliminado")
-      })
+        alert('Categoría eliminado');
+      });
+    }
   }
 }

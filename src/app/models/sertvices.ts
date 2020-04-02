@@ -7,9 +7,9 @@ export default class Service {
     category: string;
     title: string;
     description: string;
-    isApproved: Boolean;
+    isApproved: boolean;
     charge: number;
-    imageURL: String;
+    imageURL: string;
     createdAt: firestore.Timestamp;
     enable: boolean;
     constructor(serviceUid, userUid, category, title, description, isApproved, charge, imageURL, createdAt, enable) {

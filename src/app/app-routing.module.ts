@@ -8,11 +8,11 @@ import { AddCategoriesComponent } from './components/dashboard/categories/add-ca
 import { ServicesComponent } from './components/dashboard/services/services.component';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent }, 
-  { path: "index", component: IndexComponent }, 
-  { path: "categorias", component: CategoriesComponent }, 
-  { path: "agregar", component: AddCategoriesComponent },
-  { path: "servicios", component: ServicesComponent },
+  { path: '', component: LoginComponent },
+  { path: 'index', component: IndexComponent },
+  { path: 'categorias', component: CategoriesComponent },
+  { path: 'agregar', component: AddCategoriesComponent },
+  { path: 'servicios', component: ServicesComponent },
 ];
 
 @NgModule({

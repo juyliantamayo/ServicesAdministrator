@@ -4,10 +4,11 @@ export class Encargo {
     category: string;
     title: string;
     description: string;
-    isApproved: Boolean;
+    isApproved: boolean;
     charge: number;
     imageURL: string;
-    constructor(serviceUid: string, userUid: string, category: string, title: string, description: string, isApproved: Boolean, charge: number, imageURL: string) {
+    constructor(serviceUid: string, userUid: string, category: string,
+                title: string, description: string, isApproved: boolean, charge: number, imageURL: string) {
         this.serviceUid = serviceUid;
         this.userUid = userUid;
         this.category = category;
