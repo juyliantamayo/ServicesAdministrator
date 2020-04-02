@@ -2,10 +2,24 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Categori } from 'src/app/models/categories';
 import { FireStorageService } from '../FireStorage/fire-storage.service';
+import { element } from 'protractor';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
+  deleteCategory(categori: Categori) {
+    return this.firestore.collection("categories", ref => ref.where("title", "==", categori.title)).get().forEach(async (data) => {
+
+      await this.firestore.collection("categories").doc(data.docs[0].id).set({ "enable": false }, { merge: true }).then(async (dt) => {
+        this.firestore.collection("services", ref => ref.where("category", "==", categori.title)).snapshotChanges().forEach(async (element) => {
+          await element.forEach(async (dataEle) => {
+            await this.firestore.collection("services").doc(dataEle.payload.doc.id).set({ "enable": false }, { merge: true }).then(async () => {
+            })
+          })
+        })
+      })
+    })
+  }
 
   constructor(private firestore: AngularFirestore, private storage: FireStorageService) { }
 
@@ -23,30 +37,33 @@ export class CategoriesService {
   }
 
   public obtenerCategorias() {
-    return this.firestore.collection("categories").snapshotChanges();
+    return this.firestore.collection("categories",ref=>ref.where("enable","==",true)).snapshotChanges();
   }
-  public  obtenerCategoriaswhittitle( title :string) {
-    return  this.firestore.collection("categories",ref=>ref.where("title","==",title)).snapshotChanges();
+  public obtenerCategoriaswhittitle(title: string) {
+    return this.firestore.collection("categories", ref => ref.where("title", "==", title)).snapshotChanges();
   }
-  updateCategory(category: Categori, file: File) {
+  updateCategory(category: Categori, file: File, categoriapasada: string) {
     let categori: Categori = JSON.parse(window.localStorage.getItem("editar"))
     return this.firestore.collection("categories", ref => ref.where("title", "==", categori.title)).get().forEach(async (data) => {
       console.log(category)
       await this.firestore.collection("categories").doc(data.docs[0].id).set(category).then(async (dt) => {
-        if (file != null) {
-         await this.storage.uploadFile(file, "Categories/" + data.docs[0].id + ".png").then(()=>{
-          alert("Categoria "+category.title+" Modificada")
-          location.href = "/categorias";
-         })
-        }else{
-          alert("Categoria "+category.title+" Modificada")
-          location.href = "/categorias";
-        }
+        this.firestore.collection("services", ref => ref.where("category", "==", categoriapasada)).snapshotChanges().forEach(async (element) => {
+          await element.forEach(async (dataEle) => {
+            await this.firestore.collection("services").doc(dataEle.payload.doc.id).set({ "category": category.title }, { merge: true }).then(async () => {
+            })
+          })
+          if (file != null) {
+            await this.storage.uploadFile(file, "Categories/" + data.docs[0].id + ".png").then(() => {
+              location.href = "/categorias";
+            })
+          } else {
+            location.href = "/categorias";
+          }
+        })
       })
-
     })
   }
-  eliminarCategoria(){
-    
+  eliminarCategoria() {
+
   }
 }

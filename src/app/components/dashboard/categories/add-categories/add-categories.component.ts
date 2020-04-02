@@ -26,8 +26,10 @@ export class AddCategoriesComponent implements OnInit {
     location.href = "/" + link;
   }
   update() {
-    this.categoriesService.updateCategory(this.Categori, this.filej).then((dt)=>{
-      
+    let categoriavieja:Categori=JSON.parse(window.localStorage.getItem("editar"));
+    this.categoriesService.updateCategory(this.Categori, this.filej,categoriavieja.title).then((dt)=>{
+      alert("Categoria " + this.Categori.title + " Modificada")
+     
     })
   }
   editaroagregar(): boolean {

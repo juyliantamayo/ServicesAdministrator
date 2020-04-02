@@ -122,7 +122,7 @@ export class ServicesComponent implements OnInit {
     location.href = "/" + ruta
   }
   deleteService(item: Service) {
-    if (confirm("Al elminar la categoría, no podrá revertir esta acción más adelante.\n ¿Está seguro que desea eliminar esta categoría?"))
+    if (confirm("Al elminar el servicio, no podrá revertir esta acción más adelante.\n ¿Está seguro que desea eliminar esta Servicio?"))
       this.servicesService.deleteService(item).then((data) => {
         alert("Servicio eliminado")
       })

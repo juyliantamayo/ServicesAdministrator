@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
         this.categoriesArray.push(categori);
       });
     });
-    
+
   }
   editar(categori: Categori) {
     window.localStorage.setItem("editar", JSON.stringify(categori));
@@ -37,5 +37,11 @@ export class CategoriesComponent implements OnInit {
   }
   direcionamiento(link: string) {
     location.href = "/" + link;
+  }
+  eliminar(item: Categori) {
+    if (confirm("Al elminar la categoría, no podrá revertir esta acción más adelante.\n ¿Está seguro que desea eliminar esta categoría?"))
+      this.catagoriService.deleteCategory(item).then((data) => {
+        alert("Categoría eliminado")
+      })
   }
 }
