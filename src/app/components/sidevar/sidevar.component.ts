@@ -8,20 +8,20 @@ declare var $: any;
   styleUrls: ['./sidevar.component.css']
 })
 export class SidevarComponent implements OnInit {
-userAdmin:User;
-  constructor( private auth : AuthService) {
+userAdmin: User;
+  constructor( private auth: AuthService) {
     $('.sidenav').sidenav();
     $('.sidenav').sidenav({ edge: 'left' });
   }
 
   ngOnInit(): void {
-    this.userAdmin=JSON.parse(window.localStorage.getItem("user"))
+    this.userAdmin = JSON.parse(window.localStorage.getItem('user'));
   }
- singout(){
-   this.auth.logout()
-   location.href="";
+ singout() {
+   this.auth.logout();
+   location.href = '';
  }
-  direcionamiento(link :string){
-    location.href = "/"+link;
+  direcionamiento(link: string) {
+    location.href = '/' + link;
   }
 }

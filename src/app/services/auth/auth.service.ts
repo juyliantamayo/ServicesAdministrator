@@ -14,26 +14,26 @@ export class AuthService {
   }
   public doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.GoogleAuthProvider();
+      const provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
       this.afAuth.auth
         .signInWithPopup(provider)
         .then(res => {
           resolve(res);
-        })
-    })
+        });
+    });
   }
   doRegister(email: string, password: string) {
 
     return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(async (data) => {
-      console.log(data)
-      await this.firestore.collection("users").doc(data.user.uid).get().toPromise().then((user) => {
-        console.log(user.data())
-        let userL: User = JSON.parse(JSON.stringify(user.data()));
-        window.localStorage.setItem("user", JSON.stringify(userL))
-      })
-    })
+      console.log(data);
+      await this.firestore.collection('users').doc(data.user.uid).get().toPromise().then((user) => {
+        console.log(user.data());
+        const userL: User = JSON.parse(JSON.stringify(user.data()));
+        window.localStorage.setItem('user', JSON.stringify(userL));
+      });
+    });
 
   }
   async logout() {
@@ -41,11 +41,11 @@ export class AuthService {
 
   }
   verifiLoginUser() {
-    this.afAuth.auth.onAuthStateChanged(function (user) {
+    this.afAuth.auth.onAuthStateChanged((user) => {
 
       if (user) {
       } else {
-        location.href = "";
+        location.href = '';
       }
     });
   }

@@ -11,18 +11,19 @@ export class ServicesService {
 
   public obtenerServices() {
 
-    return this.firestore.collection("services",ref=>ref.where("enable","==",true)).snapshotChanges();
+    return this.firestore.collection('services', ref => ref.where('enable', '==', true)).snapshotChanges();
   }
   public obtenerServiceswhitCategori(categori: string) {
 
-    return this.firestore.collection("services",ref=>ref.where('category','==',categori).where("enable","==",true)).snapshotChanges();
+    return this.firestore.collection('services', ref =>
+    ref.where('category', '==', categori).where('enable', '==', true)).snapshotChanges();
   }
   public updateService(service: Service) {
     console.log(service);
-    return this.firestore.collection("services").doc(service.serviceUid).set({"isApproved":service.isApproved},{merge:true});
+    return this.firestore.collection('services').doc(service.serviceUid).set({isApproved: service.isApproved}, {merge: true});
   }
   public deleteService(service: Service) {
     console.log(service);
-    return this.firestore.collection("services").doc(service.serviceUid).set({"enable":false},{merge:true});
+    return this.firestore.collection('services').doc(service.serviceUid).set({enable: false}, {merge: true});
   }
 }
