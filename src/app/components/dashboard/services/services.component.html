@@ -44,7 +44,7 @@
 
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{item.title}}<i
+                        <span class="card-title grey-text text-darken-4"><b>{{item.title}}</b><i
                                 class="material-icons right">close</i></span>
                         <br>
                         <p>{{item.description}}</p>
@@ -56,22 +56,22 @@
                                     src="{{this.UsersMap.get(item.userUid).imageURL}}" alt="">
                             </div>
                             <div class="col s12 m4 l9">
-                                <h3>Nombre: {{this.UsersMap.get(item.userUid).name}}</h3>
-                                <h3>Direccion: {{this.UsersMap.get(item.userUid).address}}</h3>
+                                <h3><b>Nombre:</b> {{this.UsersMap.get(item.userUid).name}}</h3>
+                                <h3><b>Direccion:</b> {{this.UsersMap.get(item.userUid).address}}</h3>
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l12">
-                                <h3>Email: {{this.UsersMap.get(item.userUid).email}}</h3>
-                                <h3>Fecha de nacimiento: {{this.getDate(this.UsersMap.get(item.userUid).birthDay)}}</h3>
+                                <h3><b>Email:</b> {{this.UsersMap.get(item.userUid).email}}</h3>
+                                <h3><b>Fecha de nacimiento:</b> {{this.getDate(this.UsersMap.get(item.userUid).birthDay)}}</h3>
                             </div>
 
                         </div>
                         <hr>
                         <div class="row">
                             <br>
-                            <div class="col s7">
+                            <div class="col s9">
                                 <a class="deep-purple-text text-darken-1"><i
                                         class="material-icons right">cloud_download</i>Descargar documentos</a>
                             </div>
