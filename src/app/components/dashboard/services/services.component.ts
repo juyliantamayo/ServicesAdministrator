@@ -9,6 +9,7 @@ import { User } from 'src/app/models/User';
 import { firestore } from 'firebase';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { Categori } from 'src/app/models/categories';
+import FiltroServicio from 'src/app/models/filtroServicio';
 
 
 declare var $: any;
@@ -24,10 +25,26 @@ export class ServicesComponent implements OnInit {
   Arraycategori: Array<Categori> = new Array<Categori>();
   stringFiltro: string;
   servicioaeliminar: Service;
+  seleccionado:string;
   ArrayFiltro: Array<string> = new Array<string>();
-  constructor(private servicesService: ServicesService, private auth: AuthService, private userService: UserService, private categoriService: CategoriesService) { }
+  abiertobool: boolean = false;
+  fitroModel: Map<any, any> = new Map<any, any>();
+
+  filtroText: Array<Map<any, any>> = new Array<Map<any, any>>();
+  constructor(private servicesService: ServicesService, private auth: AuthService, private userService: UserService, private categoriService: CategoriesService) {
+    var mapa: Map<any, any> = new Map<any, any>();
+    mapa.set("Category", { "tipo": "string", "Value": "" });
+    this.fitroModel = mapa;
+
+  }
+
   async ngOnInit(): Promise<void> {
-    $(document).ready(function() {
+
+    console.log(this.filtroText)
+    $(document).ready(function () {
+      $('select').formSelect();
+    });
+    $(document).ready(function () {
       $('.modal').modal();
     });
 
@@ -129,4 +146,13 @@ export class ServicesComponent implements OnInit {
       });
     }
   }
+  abrirFiltro() {
+
+
+    $("#filtro").css("display", "block");
+
+  }
+mostrar(){
+  console.log(this.fitroModel[this.seleccionado])
+}
 }
