@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ServicesService } from 'src/app/services/services/services.service';
 import Service from 'src/app/models/sertvices';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -10,6 +10,8 @@ import { firestore } from 'firebase';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { Categori } from 'src/app/models/categories';
 import FiltroServicio from 'src/app/models/filtroServicio';
+import { MaterializeAction } from "materialize-css";
+import { MatChipsModule } from '@angular/material/chips';
 
 
 declare var $: any;
@@ -23,24 +25,34 @@ export class ServicesComponent implements OnInit {
   Arrayservice: Array<Service> = new Array<Service>();
   UsersMap: Map<string, User> = new Map<string, User>();
   Arraycategori: Array<Categori> = new Array<Categori>();
-  stringFiltro: string;
+  stringFiltro: Array<string> = new Array<string>();
   servicioaeliminar: Service;
-  seleccionado:string;
-  ArrayFiltro: Array<string> = new Array<string>();
+  ArrayFiltro: Map<any, any> = new Map<any, any>();
+  FiltroServicio: FiltroServicio = new FiltroServicio();
   abiertobool: boolean = false;
-  fitroModel: Map<any, any> = new Map<any, any>();
-
+  filtrovalue: string;
+  propiedadseleccionada: string;
   filtroText: Array<Map<any, any>> = new Array<Map<any, any>>();
   constructor(private servicesService: ServicesService, private auth: AuthService, private userService: UserService, private categoriService: CategoriesService) {
-    var mapa: Map<any, any> = new Map<any, any>();
-    mapa.set("Category", { "tipo": "string", "Value": "" });
-    this.fitroModel = mapa;
+
+
 
   }
+  chipsActions = new EventEmitter<string | MaterializeAction>();
 
+  objectKeys() {
+    return Object.keys(this.FiltroServicio);
+  }
   async ngOnInit(): Promise<void> {
+    $('.chips').chips();
+    $('.chips').on('chip.delete', function (e, chip) {
+      console.log(chip);
+      console.log(e);
+      console.log(chip.tag);
+    });
 
-    console.log(this.filtroText)
+    $('#filterch').prop("disabled", true);
+
     $(document).ready(function () {
       $('select').formSelect();
     });
@@ -56,7 +68,7 @@ export class ServicesComponent implements OnInit {
         const element = categoriesSnapshot[index];
         const categori: Categori = JSON.parse(JSON.stringify(element.payload.doc.data()));
         this.Arraycategori.push(categori);
-        console.log(this.Arraycategori);
+
       }
 
     });
@@ -80,7 +92,7 @@ export class ServicesComponent implements OnInit {
   }
 
   getUser(userId: string) {
-    console.log();
+
   }
   getDate(timeStamp: any) {
 
@@ -89,7 +101,7 @@ export class ServicesComponent implements OnInit {
   }
   putService(item: Service, state: boolean) {
     item.isApproved = state;
-    console.log(item);
+
     this.servicesService.updateService(item).then((data) => {
       if (item.isApproved) {
         toast({ html: 'Servicio Activado' }, 4000);
@@ -105,37 +117,44 @@ export class ServicesComponent implements OnInit {
   obtenerValueCategori(item: Categori) {
     return item.title;
   }
-  agregarFiltro(categori: string) {
-    if (this.ArrayFiltro.indexOf(categori) > -1) {
-      this.ArrayFiltro.splice(this.ArrayFiltro.indexOf(categori), 1);
-    } else {
-      this.ArrayFiltro.push(categori);
+  agregarFiltro() {
 
-    }
+    this.ArrayFiltro.set(this.propiedadseleccionada, this.filtrovalue);
     this.cambiarStringFilter();
+    this.cerrarFiltro()
   }
   cambiarStringFilter() {
-    this.stringFiltro = '';
-    for (let index = 0; index < this.ArrayFiltro.length; index++) {
-      if (index > 0) {
-        this.stringFiltro += ',' + this.ArrayFiltro[index];
-      } else {
-        this.stringFiltro += this.ArrayFiltro[index];
+    this.stringFiltro =new Array<string>();
+    this.objectKeys().forEach(element => {
+      if (this.ArrayFiltro.get(element) != undefined) {
+        this.stringFiltro.push(element + ":" + this.ArrayFiltro.get(element))
       }
-
-    }
-  }
-  mostrarCarta(categori: string) {
-    if (this.ArrayFiltro.length > 0) {
-      if (this.ArrayFiltro.indexOf(categori) > -1) {
-        return true;
-      }
-      return false;
-    } else {
-      return true;
-    }
+    });
 
   }
+  eliminarfiltro(filtro: string) {
+    const index = this.stringFiltro.indexOf(filtro);
+
+    if (index >= 0) {
+      this.stringFiltro.splice(index, 1);
+    }
+    this.eliminarfiltroFunsionalida(filtro)
+  }
+  eliminarfiltroFunsionalida(filtro: string) {
+    this.ArrayFiltro.delete(filtro.split(":")[0])
+  }
+  mostrarCarta(service: Service) {
+    var pibot: boolean = true;;
+    this.objectKeys().forEach(element => {
+      if (this.ArrayFiltro.get(element) != undefined) {
+        if (!service[element].toString().includes(this.ArrayFiltro.get(element).toString())) {
+          pibot = false;
+        }
+      }
+    });
+    return pibot;
+  }
+
   direcionamiento(ruta: string) {
     location.href = '/' + ruta;
   }
@@ -147,12 +166,16 @@ export class ServicesComponent implements OnInit {
     }
   }
   abrirFiltro() {
-
-
-    $("#filtro").css("display", "block");
+    $("#filtro").show();
+  }
+  abilitarinput() {
+    $("#disabled").prop("disabled", false);
+  }
+  cerrarFiltro() {
+    $("#filtro").hide();
+  }
+  servicioFiltro() {
 
   }
-mostrar(){
-  console.log(this.fitroModel[this.seleccionado])
-}
+
 }

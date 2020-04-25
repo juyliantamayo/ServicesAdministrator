@@ -1,77 +1,65 @@
 <app-sidevar></app-sidevar>
-
+<nav style="background-color: #37003c;">
+    <div class="nav-wrapper" style="margin-left: 23%;">
+        <a (click)="direcionamiento('servicios')" class="brand-logo"> Servicios</a>
+    </div>
+</nav>
 <br>
-<div  style="margin-left: 25%;position: absolute;" >
-    <nav style="background-color: #37003c;">
-        <div class="nav-wrapper" style="margin-left: 1%;">
-            <a (click)="direcionamiento('servicios')" class="brand-logo"> Servicios</a>
-
-        </div>
-    </nav>
+<div style="margin-left: 25%;position: relative;">
     <div class="row">
-        <div class="input-field col s12">
-            <div class="input-field col s7">
-                <input id="first_name" type="text" class="validate" name="filter" [(ngModel)]="this.stringFiltro"
-                    (click)="abrirFiltro()">
-
-                <div class="row" style="display:none;z-index: 100;position: absolute;" id="filtro">
+        <div class="col s12">
+            <div class="input-field col s12">
+                <mat-form-field class=" col s12" (click)="abrirFiltro() " style="width: 100%;">
+                    <mat-chip-list #chipList >
+                        <mat-chip *ngFor="let item of this.stringFiltro; let i=index"  [removable]="true"(removed)="eliminarfiltro(item)">
+                            {{item}}
+                            <mat-icon matChipRemove >cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </mat-form-field>
+                <div class="row" style="z-index: 100;position: absolute; margin-top: 5%;" hidden id="filtro">
                     <div class="col s12 ">
-                        <div class="card ">
-                            <div class="card-content ">
-                              
-                                <div class="input-field col s12">
-                                    <select [(ngModel)]="this.seleccionado" >
-                                      <option value="" disabled selected>Porpiedad a Filtrar</option>
-                                      <option value="Category">Categoria</option>
-                                    </select>
-                                  </div>
-                                  <div class="input-field col s12">
-                                    <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                                    <label for="first_name">First Name</label>
-                                  </div>
-                                  
-                                
-                            </div>
-                            <div class="card-action">
-                                <a class="waves-effect waves-light btn">Cancelar</a>
-                                <a class="waves-effect waves-light btn">
-                                    filtrar
-                                </a>
+                        <div class="card horizontal">
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <div class="input-field col s6">
+                                        <select (change)="abilitarinput()" [(ngModel)]="this.propiedadseleccionada">
+                                            <option value="" disabled selected>Porpiedad a Filtrar</option>
+                                            <option *ngFor="let k of objectKeys()" value={{k}}>{{k}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input disabled id="disabled" type="text" class="validate"
+                                            [(ngModel)]="this.filtrovalue">
+                                        <label for="disabled"></label>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <a class="waves-effect waves-light btn" (click)="cerrarFiltro()">Cancelar</a>
+                                    <a class="waves-effect waves-light btn" (click)="agregarFiltro()">
+                                        filtrar
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="input-field col s3">
-                <a class='dropdown-trigger btn' data-target='dropdown1'
-                    style="width: 100%;background-color: #ff0000;">Filtro</a>
-
-                <!-- Dropdown Structure -->
-                <div id='dropdown1' class='dropdown-content' style="width: 100%;height: 100%;">
-                    <ul>
-                        <li *ngFor="let item of this.Arraycategori"> <label><input type="checkbox"
-                                    (click)="agregarFiltro(item.title)" />
-                                <span>{{item.title}}</span></label></li>
-                    </ul>
-                </div>
-
-            </div>
         </div>
     </div>
-    <div class="row" style="z-index: 1;">
+    <div class="row">
         <div *ngFor="let item of Arrayservice">
-            <div class="col s12 m6 l5" *ngIf="mostrarCarta(item.category)">
-                <div class="card sticky-action hoverable">
+            <div class="col s4"*ngIf="mostrarCarta(item)" >
+                <div class="card sticky-action hoverable"  style="width: 100%;">
                     <div class="card-image waves-effect waves-block waves-light black">
                         <img class="activator" src={{item.imageURL}} width="480" height="300">
                     </div>
-                    <div class="card-content">
+                    <div class="card-content"  style="width: 100%;">
                         <span class="card-title activator grey-text text-darken-4">{{item.title}}<i
                                 class="material-icons right">more_vert</i></span>
-
                     </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{item.title}}<i
+                    <div class="card-reveal"  style="width: 100%;">
+                        <span class="card-title grey-text text-darken-4"><b>{{item.title}}</b><i
                                 class="material-icons right">close</i></span>
                         <br>
                         <p>{{item.description}}</p>
@@ -83,31 +71,31 @@
                                     src="{{this.UsersMap.get(item.userUid).imageURL}}" alt="">
                             </div>
                             <div class="col s12 m4 l9">
-                                <h3>Nombre : {{this.UsersMap.get(item.userUid).name}}</h3>
-                                <h3>Direccion:{{this.UsersMap.get(item.userUid).address}}</h3>
+                                <h3><b>Nombre:</b> {{this.UsersMap.get(item.userUid).name}}</h3>
+                                <h3><b>Direccion:</b> {{this.UsersMap.get(item.userUid).address}}</h3>
                             </div>
 
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l12">
-                                <h3>Email : {{this.UsersMap.get(item.userUid).email}}</h3>
-                                <h3>Fecha de nacimiento:{{this.getDate(this.UsersMap.get(item.userUid).birthDay)}}</h3>
+                                <h3><b>Email:</b> {{this.UsersMap.get(item.userUid).email}}</h3>
+                                <h3><b>Fecha de nacimiento:</b>
+                                    {{this.getDate(this.UsersMap.get(item.userUid).birthDay)}}</h3>
                             </div>
 
                         </div>
                         <hr>
-                        <div class="row  left-align">
+                        <div class="row">
                             <br>
-                            <div class="container">
+                            <div class="col s9">
                                 <a class="deep-purple-text text-darken-1"><i
                                         class="material-icons right">cloud_download</i>Descargar documentos</a>
                             </div>
-
                         </div>
-
+                        <br>
                     </div>
                     <div class="card-action accent-3 " style="background-color: #37003c;">
-                        <div class="container center-align">
+                        <div class="center-align">
                             <div class="row">
                                 <div class="col s6">
                                     <div class="switch" style="width: 100%;">
@@ -129,14 +117,10 @@
                                         </label>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
