@@ -27,14 +27,22 @@
                     </div>
                     <div class="card-content">
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field col s6">
                                 <input id="nombre" type="text" class="validate" name="nombre" [(ngModel)]="this.Categori.title">
 
                                 <label for="nombre" class="active" *ngIf="!this.editaroagregar()">Nombre de la
                                     Categoria</label>
                                 <label for="nombre" *ngIf="this.editaroagregar()">Nombre de la Categoria</label>
                             </div>
+                            <div class="input-field col s6">
+                                <textarea id="descripcion" class="materialize-textarea" name="description" [(ngModel)]="this.Categori.description"></textarea>
+                                <label for="descripcion" *ngIf="this.editaroagregar()">Descripción</label>
+
+
+                                <label for="descripcion" class="active" *ngIf="!this.editaroagregar()">Descripción</label>
+                            </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col s3"></div>
                             <div class="col s6"><img src="{{this.Categori.imageURL}}" style="width: 100%; height: 100%;" id="imgSalida" *ngIf="!this.editaroagregar()">
@@ -52,15 +60,6 @@
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="descripcion" class="materialize-textarea" name="description" [(ngModel)]="this.Categori.description"></textarea>
-                                <label for="descripcion" *ngIf="this.editaroagregar()">Descripción</label>
-
-
-                                <label for="descripcion" class="active" *ngIf="!this.editaroagregar()">Descripción</label>
-                            </div>
                         </div>
                     </div>
                     <div class="card-content center-align grey lighten-3">
