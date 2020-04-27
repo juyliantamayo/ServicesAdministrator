@@ -1,5 +1,5 @@
 <app-sidevar></app-sidevar>
-<nav style="background-color: #37003c;">
+<nav style="background-color: #7A81DC;">
     <div class="nav-wrapper" style="margin-left: 23%;">
         <a (click)="direcionamiento('categorias')" class="brand-logo"> Categorias</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -17,7 +17,7 @@
         <form class="col s12" action="#">
             <div class="container">
                 <div class="card">
-                    <div class="card-content  center-align" style="background-color: #00FF87;color:  #37003c;">
+                    <div class="card-content  center-align" style="background-color: #ff7ca3;color:  #ffffff;">
                         <div class="row">
                             <div class="">
                                 <h1 *ngIf="this.editaroagregar()">Agregar Nueva Categoria</h1>
@@ -27,21 +27,29 @@
                     </div>
                     <div class="card-content">
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field col s6">
                                 <input id="nombre" type="text" class="validate" name="nombre" [(ngModel)]="this.Categori.title">
 
                                 <label for="nombre" class="active" *ngIf="!this.editaroagregar()">Nombre de la
                                     Categoria</label>
                                 <label for="nombre" *ngIf="this.editaroagregar()">Nombre de la Categoria</label>
                             </div>
+                            <div class="input-field col s6">
+                                <textarea id="descripcion" class="materialize-textarea" name="description" [(ngModel)]="this.Categori.description"></textarea>
+                                <label for="descripcion" *ngIf="this.editaroagregar()">Descripción</label>
+
+
+                                <label for="descripcion" class="active" *ngIf="!this.editaroagregar()">Descripción</label>
+                            </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col s3"></div>
                             <div class="col s6"><img src="{{this.Categori.imageURL}}" style="width: 100%; height: 100%;" id="imgSalida" *ngIf="!this.editaroagregar()">
                                 <img style="width: 100%; height: 100%;" id="imgSalida" *ngIf="this.editaroagregar()">
 
                                 <div class="file-field input-field">
-                                    <div class="btn" style="background-color: #00FF87;color:  #37003c;width: 100%;">
+                                    <div class="btn" style="background-color: #ff316e;color:  #ffffff;width: 100%;">
                                         <span *ngIf="!this.editaroagregar()">Cambiar Imagen</span>
                                         <span *ngIf="this.editaroagregar()">Subir Imagen</span>
                                         <input type="file" accept="image/*" (change)="changeimgae($event.target.files)">
@@ -53,22 +61,13 @@
                             </div>
 
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="descripcion" class="materialize-textarea" name="description" [(ngModel)]="this.Categori.description"></textarea>
-                                <label for="descripcion" *ngIf="this.editaroagregar()">Descripción</label>
-
-
-                                <label for="descripcion" class="active" *ngIf="!this.editaroagregar()">Descripción</label>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-content center-align grey lighten-3">
                         <div class="row">
-                            <button (click)="agregarCategoria()" *ngIf="this.editaroagregar()" class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #00FF87;color:  #37003c;width: 100%;">Agregar
+                            <button (click)="agregarCategoria()" *ngIf="this.editaroagregar()" class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #ff316e;color:  #7A81DC;width: 100%;">Agregar
                                 <i class="material-icons right">add</i>
                             </button>
-                            <button *ngIf="!this.editaroagregar()" class="btn waves-effect" style="background-color: #00FF87;color:  #37003c;width: 100%;" type="submit" name="action" (click)=" update()">Editar
+                            <button *ngIf="!this.editaroagregar()" class="btn waves-effect" style="background-color: #ff316e;color:  #ffffff;width: 100%;" type="submit" name="action" (click)=" update()">Editar
 
                             </button>
                         </div>
