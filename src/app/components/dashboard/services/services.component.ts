@@ -77,7 +77,9 @@ export class ServicesComponent implements OnInit {
         this.userService.getuserbyUid(service.userUid).toPromise().then((datauser) => {
 
           this.UsersMap.set(service.userUid, JSON.parse(JSON.stringify(datauser.data())));
-
+          $(document).ready(function () {
+            $('.modal').modal();
+          });
         });
 
       });

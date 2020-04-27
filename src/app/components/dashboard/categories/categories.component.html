@@ -10,7 +10,7 @@
 <br>
 <div class="container" style="margin-left: 25%;position: relative;">
 
-   
+
     <div class="row">
 
         <div class="col s12 m5 l4" *ngFor="let item of categoriesArray" style="height: 100%;">
@@ -31,8 +31,27 @@
                     <p>{{item.description}}</p>
                 </div>
                 <div class="card-action center-align " style="background-color: #ff7ca3;">
-                    <a class="waves-effect btn-flat btn-small white-text " (click)="editar(item)"><i class="material-icons white-text left">create</i>Editar</a>
-                    <a class="waves-effect btn-flat btn-small white-text" (click)="eliminar(item)"><i class="material-icons white-text left">delete</i>Eliminar</a>
+                    <a class="waves-effect btn-flat btn-small white-text " (click)="editar(item)"><i
+                            class="material-icons white-text left">create</i>Editar</a>
+                    <a href="#eliminar" class="waves-effect btn-flat btn-small white-text modal-trigger" ><i
+                            class="material-icons white-text left">delete</i>Eliminar</a>
+                </div>
+                <!-- Modal eliminar categoria -->
+                <div id="eliminar" class="modal">
+                    <div class="modal-content">
+                        <h1>Eliminar categoría</h1>
+                        <p>
+                            Al eliminar esta categoría, esta deshabilitandola.
+                            Es decir, quedará en la base de datos pero no se podrá usar, hasta
+                            volverla a habilitar.
+                            ¿Esta de seguro de eliminar esta categoría?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                        <a (click)="eliminar(item)" class="modal-close waves-effect waves-light btn-flat">De
+                            acuerdo</a>
+                    </div>
                 </div>
             </div>
 
@@ -41,7 +60,7 @@
     <div class="divider"></div>
     <br>
     <div>
-        <a class="right btn-floating btn-large waves-effect waves-light " style="background-color: #ffd5c3;" (click)="agregar()"><i
-                class="material-icons">add</i></a>
+        <a class="right btn-floating btn-large waves-effect waves-light " style="background-color: #ffd5c3;"
+            (click)="agregar()"><i class="material-icons">add</i></a>
     </div>
 </div>
