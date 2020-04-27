@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { Categori } from 'src/app/models/categories';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { toast } from 'materialize-css';
 import { environment } from 'src/environments/environment';
 import FiltroServicio from 'src/app/models/filtroServicio';
 declare var $: any;
@@ -25,11 +26,11 @@ export class CategoriesComponent implements OnInit {
   objectKeys() {
     return Object.keys(this.FiltroServicio);
   }
-  valueStringchips(item:string){
-    return this.valueString(item.split(":")[0])+":"+item.split(":")[1]
+  valueStringchips(item: string) {
+    return this.valueString(item.split(":")[0]) + ":" + item.split(":")[1]
   }
   cambiarStringFilter() {
-    this.stringFiltro =new Array<string>();
+    this.stringFiltro = new Array<string>();
     this.objectKeys().forEach(element => {
       if (this.ArrayFiltro.get(element) != undefined) {
         this.stringFiltro.push(element + ":" + this.ArrayFiltro.get(element))
@@ -49,7 +50,7 @@ export class CategoriesComponent implements OnInit {
   cerrarFiltro() {
     $("#filtro").hide();
   }
-  valueString(k:string){
+  valueString(k: string) {
     return this.FiltroServicio[k].toString()
   }
   eliminarfiltro(filtro: string) {
@@ -71,6 +72,9 @@ export class CategoriesComponent implements OnInit {
       categoriesSnapshot.forEach((categoriData) => {
         const categori: Categori = JSON.parse(JSON.stringify(categoriData.payload.doc.data()));
         this.categoriesArray.push(categori);
+        $(document).ready(function () {
+          $('.modal').modal();
+        });
       });
     });
 
@@ -87,10 +91,8 @@ export class CategoriesComponent implements OnInit {
     location.href = '/' + link;
   }
   eliminar(item: Categori) {
-    if (confirm('Al elminar la categoría, no podrá revertir esta acción más adelante.\n ¿Está seguro que desea eliminar esta categoría?')) {
-      this.catagoriService.deleteCategory(item).then((data) => {
-        alert('Categoría eliminado');
-      });
-    }
+    this.catagoriService.deleteCategory(item).then((data) => {
+      toast({ html: 'Categoria eliminada' }, 4000);
+    });
   }
 }

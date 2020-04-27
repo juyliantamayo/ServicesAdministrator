@@ -8,12 +8,13 @@
 <div style="margin-left: 25%;position: relative;">
     <div class="row">
         <div class="col s12">
-            <div >
-                <mat-form-field  (click)="abrirFiltro() " style="width: 100%;">
-                    <mat-chip-list #chipList >
-                        <mat-chip *ngFor="let item of this.stringFiltro; let i=index"  [removable]="true"(removed)="eliminarfiltro(item)">
+            <div>
+                <mat-form-field (click)="abrirFiltro() " style="width: 100%;">
+                    <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let item of this.stringFiltro; let i=index" [removable]="true"
+                            (removed)="eliminarfiltro(item)">
                             {{valueStringchips(item)}}
-                            <mat-icon matChipRemove >cancel</mat-icon>
+                            <mat-icon matChipRemove>cancel</mat-icon>
                         </mat-chip>
                     </mat-chip-list>
                 </mat-form-field>
@@ -25,7 +26,8 @@
                                     <div class="input-field col s6">
                                         <select (change)="abilitarinput()" [(ngModel)]="this.propiedadseleccionada">
                                             <option value="" disabled selected>Porpiedad a Filtrar</option>
-                                            <option *ngFor="let k of objectKeys()" value={{k}}>{{valueString(k)}}</option>
+                                            <option *ngFor="let k of objectKeys()" value={{k}}>{{valueString(k)}}
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="input-field col s6">
@@ -49,16 +51,16 @@
     </div>
     <div class="row">
         <div *ngFor="let item of Arrayservice">
-            <div class="col s4"*ngIf="mostrarCarta(item)" >
-                <div class="card sticky-action hoverable"  style="width: 100%;">
+            <div class="col s4" *ngIf="mostrarCarta(item)">
+                <div class="card sticky-action hoverable" style="width: 100%;">
                     <div class="card-image waves-effect waves-block waves-light black">
                         <img class="activator" src={{item.imageURL}} width="480" height="300">
                     </div>
-                    <div class="card-content"  style="width: 100%;">
+                    <div class="card-content" style="width: 100%;">
                         <span class="card-title activator grey-text text-darken-4">{{item.title}}<i
                                 class="material-icons right">more_vert</i></span>
                     </div>
-                    <div class="card-reveal"  style="width: 100%;">
+                    <div class="card-reveal" style="width: 100%;">
                         <span class="card-title grey-text text-darken-4"><b>{{item.title}}</b><i
                                 class="material-icons right">close</i></span>
                         <br>
@@ -112,12 +114,29 @@
                                 <div class="col s6">
                                     <div class="switch" style="width: 100%;">
                                         <label class="deep-purple-text text-darken-1" style="width: 100%;">
-                                            <a class="waves-effect  waves-light btn" (click)=" deleteService(item)"
+                                            <a href="#eliminar" class="waves-effect  waves-light btn modal-trigger"
                                                 style="background-color: #FF3333;width: 100%;">Eliminar</a>
                                         </label>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Modal eliminar servicio -->
+                    <div id="eliminar" class="modal">
+                        <div class="modal-content">
+                            <h1>Eliminar servicio</h1>
+                            <p>
+                                Al eliminar este servicio, esta deshabilitandolo.
+                                Es decir, quedará en la base de datos pero no se podrá usar, hasta
+                                volverlo a habilitar.
+                                ¿Esta de seguro de eliminar este servicio?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                            <a (click)=" deleteService(item)" class="modal-close waves-effect waves-light btn-flat">De
+                                acuerdo</a>
                         </div>
                     </div>
                 </div>
