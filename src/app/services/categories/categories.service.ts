@@ -29,6 +29,7 @@ export class CategoriesService {
     return this.firestore.collection('categories').doc(id).snapshotChanges();
   }
   public crearCategoria(categoria: Categori, file: File) {
+    
     return this.firestore.collection('categories').add(JSON.parse(JSON.stringify(categoria))).then(async (data) => {
       await this.storage.uploadFile(file, 'Categories/' + data.id + '.png');
       categoria.imageURL = 'https://firebasestorage.googleapis.com/v0/b/appservice-b8a23.appspot.com/o/Categories%2F' +

@@ -147,14 +147,20 @@ export class ServicesComponent implements OnInit {
     var pibot: boolean = true;;
     this.objectKeys().forEach(element => {
       if (this.ArrayFiltro.get(element) != undefined) {
-        if (!service[element].toString().includes(this.ArrayFiltro.get(element).toString())) {
+        if (!service[element].toString().toLowerCase( ).includes(this.ArrayFiltro.get(element).toString().toLowerCase( ))) {
           pibot = false;
         }
       }
     });
     return pibot;
   }
+  valueString(k:string){
+    return this.FiltroServicio[k].toString()
+  }
 
+  valueStringchips(item:string){
+    return this.valueString(item.split(":")[0])+":"+item.split(":")[1]
+  }
   direcionamiento(ruta: string) {
     location.href = '/' + ruta;
   }

@@ -3,6 +3,7 @@ import { CategoriesService } from 'src/app/services/categories/categories.servic
 import { Categori } from 'src/app/models/categories';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { environment } from 'src/environments/environment';
+import FiltroServicio from 'src/app/models/filtroServicio';
 declare var $: any;
 
 @Component({
@@ -11,10 +12,57 @@ declare var $: any;
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-
+  stringFiltro: Array<string> = new Array<string>();
   public categoriesArray: Array<Categori> = new Array<Categori>();
+  ArrayFiltro: Map<any, any> = new Map<any, any>();
+  FiltroServicio: FiltroServicio = new FiltroServicio();
+  propiedadseleccionada: string;
+  filtrovalue: string;
   constructor(private catagoriService: CategoriesService, private auth: AuthService) { }
+  abrirFiltro() {
+    $("#filtro").show();
+  }
+  objectKeys() {
+    return Object.keys(this.FiltroServicio);
+  }
+  valueStringchips(item:string){
+    return this.valueString(item.split(":")[0])+":"+item.split(":")[1]
+  }
+  cambiarStringFilter() {
+    this.stringFiltro =new Array<string>();
+    this.objectKeys().forEach(element => {
+      if (this.ArrayFiltro.get(element) != undefined) {
+        this.stringFiltro.push(element + ":" + this.ArrayFiltro.get(element))
+      }
+    });
 
+  }
+  agregarFiltro() {
+
+    this.ArrayFiltro.set(this.propiedadseleccionada, this.filtrovalue);
+    this.cambiarStringFilter();
+    this.cerrarFiltro()
+  }
+  abilitarinput() {
+    $("#disabled").prop("disabled", false);
+  }
+  cerrarFiltro() {
+    $("#filtro").hide();
+  }
+  valueString(k:string){
+    return this.FiltroServicio[k].toString()
+  }
+  eliminarfiltro(filtro: string) {
+    const index = this.stringFiltro.indexOf(filtro);
+
+    if (index >= 0) {
+      this.stringFiltro.splice(index, 1);
+    }
+    this.eliminarfiltroFunsionalida(filtro)
+  }
+  eliminarfiltroFunsionalida(filtro: string) {
+    this.ArrayFiltro.delete(filtro.split(":")[0])
+  }
   ngOnInit(): void {
 
     this.auth.verifiLoginUser();

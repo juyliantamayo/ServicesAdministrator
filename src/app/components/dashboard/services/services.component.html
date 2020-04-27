@@ -8,24 +8,24 @@
 <div style="margin-left: 25%;position: relative;">
     <div class="row">
         <div class="col s12">
-            <div class="input-field col s12">
-                <mat-form-field class=" col s12" (click)="abrirFiltro() " style="width: 100%;">
+            <div >
+                <mat-form-field  (click)="abrirFiltro() " style="width: 100%;">
                     <mat-chip-list #chipList >
                         <mat-chip *ngFor="let item of this.stringFiltro; let i=index"  [removable]="true"(removed)="eliminarfiltro(item)">
-                            {{item}}
+                            {{valueStringchips(item)}}
                             <mat-icon matChipRemove >cancel</mat-icon>
                         </mat-chip>
                     </mat-chip-list>
                 </mat-form-field>
-                <div class="row" style="z-index: 100;position: absolute; margin-top: 5%;" hidden id="filtro">
+                <div class="row" style="z-index: 100;position: absolute; " hidden id="filtro">
                     <div class="col s12 ">
                         <div class="card horizontal">
                             <div class="card-stacked">
-                                <div class="card-content">
+                                <div class=" card-content">
                                     <div class="input-field col s6">
                                         <select (change)="abilitarinput()" [(ngModel)]="this.propiedadseleccionada">
                                             <option value="" disabled selected>Porpiedad a Filtrar</option>
-                                            <option *ngFor="let k of objectKeys()" value={{k}}>{{k}}</option>
+                                            <option *ngFor="let k of objectKeys()" value={{k}}>{{valueString(k)}}</option>
                                         </select>
                                     </div>
                                     <div class="input-field col s6">
