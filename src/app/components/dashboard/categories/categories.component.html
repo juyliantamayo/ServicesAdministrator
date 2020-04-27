@@ -10,49 +10,7 @@
 <br>
 <div class="container" style="margin-left: 25%;position: relative;">
 
-    <div class="row">
-        <div class="col s12">
-            <div>
-                <mat-form-field (click)="abrirFiltro() " style="width: 100%;">
-                    <mat-chip-list #chipList>
-                        <mat-chip *ngFor="let item of this.stringFiltro; let i=index" [removable]="true"
-                            (removed)="eliminarfiltro(item)">
-                            {{valueStringchips(item)}}
-                            <mat-icon matChipRemove>cancel</mat-icon>
-                        </mat-chip>
-                    </mat-chip-list>
-                </mat-form-field>
-                <div class="row" style="z-index: 100;position: absolute; " hidden id="filtro">
-                    <div class="col s12 ">
-                        <div class="card horizontal">
-                            <div class="card-stacked">
-                                <div class="card-content">
-                                    <div class="input-field col s6">
-                                        <select (change)="abilitarinput()" [(ngModel)]="this.propiedadseleccionada">
-                                            <option value="" disabled selected>Porpiedad a Filtrar</option>
-                                            <option *ngFor="let k of objectKeys()" value={{k}}>{{valueString(k)}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input disabled id="disabled" type="text" class="validate"
-                                            [(ngModel)]="this.filtrovalue">
-                                        <label for="disabled"></label>
-                                    </div>
-                                </div>
-                                <div class="card-action">
-                                    <a class="waves-effect waves-light btn" (click)="cerrarFiltro()">Cancelar</a>
-                                    <a class="waves-effect waves-light btn" (click)="agregarFiltro()">
-                                        filtrar
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <div class="row">
 
         <div class="col s12 m5 l4" *ngFor="let item of categoriesArray" style="height: 100%;">

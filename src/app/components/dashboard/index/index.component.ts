@@ -56,6 +56,10 @@ export class IndexComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    $('.carousel.carousel-slider').carousel({
+      fullWidth: true,
+      indicators: true
+    });
 
     const meses = [
       'January',

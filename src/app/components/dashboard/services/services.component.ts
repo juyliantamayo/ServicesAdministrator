@@ -44,13 +44,7 @@ export class ServicesComponent implements OnInit {
     return Object.keys(this.FiltroServicio);
   }
   async ngOnInit(): Promise<void> {
-    $('.chips').chips();
-    $('.chips').on('chip.delete', function (e, chip) {
-      console.log(chip);
-      console.log(e);
-      console.log(chip.tag);
-    });
-
+   
     $('#filterch').prop("disabled", true);
 
     $(document).ready(function () {
@@ -179,9 +173,5 @@ export class ServicesComponent implements OnInit {
   }
   cerrarFiltro() {
     $("#filtro").hide();
-  }
-  servicioFiltro() {
-
-  }
-
+  } 
 }
