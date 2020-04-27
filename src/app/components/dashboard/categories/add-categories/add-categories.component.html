@@ -88,6 +88,25 @@
                             </button>
                         </div>
                     </div>
+                    <div id="modal" class="modal">
+                        <div class="modal-content">
+                            <h1 *ngIf="this.editaroagregar()">Agregar categoría</h1>
+                            <h1 *ngIf="!this.editaroagregar()">Editar categoría</h1>
+                            <p *ngIf="this.editaroagregar()">
+                                Se ha Agregado la categoria .
+                              
+                            </p>
+                            <p *ngIf="!this.editaroagregar()">
+                                Se ha Editado la categoria .
+                              
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                           
+                            <a (click)="redireccionar()" class="modal-close waves-effect waves-light btn-flat">De
+                                acuerdo</a>
+                        </div>
+                    </div>
                 </div>
 
             </div>

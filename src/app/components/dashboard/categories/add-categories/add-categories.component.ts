@@ -14,6 +14,7 @@ export class AddCategoriesComponent implements OnInit {
   constructor(private categoriesService: CategoriesService, private auth: AuthService) { }
   filej: File = null;
   ngOnInit(): void {
+    $('.modal').modal();
     this.auth.verifiLoginUser();
     if (window.localStorage.getItem('editar') != null) {
       this.Categori = JSON.parse(window.localStorage.getItem('editar'));
@@ -28,7 +29,7 @@ export class AddCategoriesComponent implements OnInit {
   update() {
     const categoriavieja: Categori = JSON.parse(window.localStorage.getItem('editar'));
     this.categoriesService.updateCategory(this.Categori, this.filej, categoriavieja.title).then((dt) => {
-      alert('Categoria ' + this.Categori.title + ' Modificada');
+      $('#modal').modal('open')
 
     });
   }
@@ -58,7 +59,10 @@ export class AddCategoriesComponent implements OnInit {
   agregarCategoria() {
 
     this.categoriesService.crearCategoria(this.Categori, this.filej).then(() => {
-      location.href = '/categorias';
+      $('#modal').modal('open')
     });
+  }
+  redireccionar(){
+    location.href = '/categorias';
   }
 }

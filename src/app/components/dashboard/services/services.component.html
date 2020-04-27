@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="row">
-        <div *ngFor="let item of Arrayservice">
+        <div *ngFor="let item of Arrayservice;let index2=index">
             <div class="col s4" *ngIf="mostrarCarta(item)">
                 <div class="card sticky-action hoverable" style="width: 100%;">
                     <div class="card-image waves-effect waves-block waves-light black">
@@ -114,7 +114,7 @@
                                 <div class="col s6">
                                     <div class="switch" style="width: 100%;">
                                         <label class="deep-purple-text text-darken-1" style="width: 100%;">
-                                            <a href="#eliminar" class="waves-effect  waves-light btn modal-trigger"
+                                            <a href="#{{index2}}" class="waves-effect  waves-light btn modal-trigger"
                                                 style="background-color: #FF3333;width: 100%;">Eliminar</a>
                                         </label>
                                     </div>
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <!-- Modal eliminar servicio -->
-                    <div id="eliminar" class="modal">
+                    <div id="{{index2}}" class="modal">
                         <div class="modal-content">
                             <h1>Eliminar servicio</h1>
                             <p>

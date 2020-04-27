@@ -35,7 +35,7 @@ export class CategoriesService {
       categoria.imageURL = 'https://firebasestorage.googleapis.com/v0/b/appservice-b8a23.appspot.com/o/Categories%2F' +
        data.id + '.png?alt=media&token=f18a3d85-e0dc-4959-ba6c-a9eb94c1a10d';
       data.set(JSON.parse(JSON.stringify(categoria))).then(() => {
-        alert('Categoria Creada');
+  
       });
     });
   }
@@ -60,10 +60,8 @@ export class CategoriesService {
           });
           if (file != null) {
             await this.storage.uploadFile(file, 'Categories/' + data.docs[0].id + '.png').then(() => {
-              location.href = '/categorias';
+              
             });
-          } else {
-            location.href = '/categorias';
           }
         });
       });
