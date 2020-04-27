@@ -28,10 +28,10 @@ body {
 }
 
 .input-field input:focus + label {
-    color: #311b92 !important;
+    color: #ff7ca3 !important;
   }
   /* label underline focus color */
   .row .input-field input:focus {
-    border-bottom: 1px solid #311b92 !important;
-    box-shadow: 0 1px 0 0 #311b92 !important
+    border-bottom: 1px solid #ff7ca3 !important;
+    box-shadow: 0 1px 0 0 #ff7ca3 !important
   }
