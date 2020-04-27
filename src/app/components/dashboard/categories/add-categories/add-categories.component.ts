@@ -33,7 +33,8 @@ export class AddCategoriesComponent implements OnInit {
     });
   }
   editaroagregar(): boolean {
-    return window.localStorage.getItem('editar') === undefined;
+    console.log(window.localStorage.getItem('editar'))
+    return window.localStorage.getItem('editar') === undefined || window.localStorage.getItem('editar')===null;
   }
   changeimgae(event: FileList) {
     const file: File = event.item(0);

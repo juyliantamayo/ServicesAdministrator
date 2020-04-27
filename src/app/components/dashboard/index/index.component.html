@@ -9,35 +9,38 @@
 <div class="container" style="margin-left: 25%;">
     <div class="row">
         <div class="col s12">
-            <div class="carousel carousel-slider center">
-                <div class="carousel-fixed-item center">
-                  <a class="btn waves-effect white grey-text darken-text-2">button</a>
-                </div>
-                <div class="carousel-item red white-text" href="#one!">
-                  <h2>First Panel</h2>
-                  <p class="white-text">This is your first panel</p>
-                </div>
-                <div class="carousel-item amber white-text" href="#two!">
-                  <h2>Second Panel</h2>
-                  <p class="white-text">This is your second panel</p>
-                </div>
-                <div class="carousel-item green white-text" href="#three!">
-                  <h2>Third Panel</h2>
-                  <p class="white-text">This is your third panel</p>
-                </div>
-                <div class="carousel-item blue white-text" href="#four!">
-                  <h2>Fourth Panel</h2>
-                  <p class="white-text">This is your fourth panel</p>
-                </div>
+            <div class="input-field col s12">
+                <select [(ngModel)]="graficaseleccionada" >
+                  <optgroup label="Barras Verticales">
+                    <option value="1" selected>Categoria Por Servicios Creados</option>
+                    <option value="2">Meses Por Servicios Creados </option>
+                  </optgroup>
+                  <optgroup label="Barras Horizontales">
+                    <option value="3">Categoria Por Servicios Creados</option>
+                    <option value="4">Meses Por Servicios Creados</option>
+                  </optgroup>
+                </select>
+                <label>Optgroups</label>
               </div>
         </div>
-        <div class="col s6">
-            <ngx-charts-bar-vertical [view]=" view " [scheme]="colorScheme" [results]="labelStringDataFirschar " [gradient]="gradient " [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel " [showYAxisLabel]="showYAxisLabel
+        <div class="col s12" *ngIf="mostrarGrafica('1')">
+            <ngx-charts-bar-vertical id="1"  [view]=" view " [scheme]="colorScheme" [results]="labelStringDataFirschar " [gradient]="gradient " [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel " [showYAxisLabel]="showYAxisLabel
             " [xAxisLabel]="xAxisLabel " [yAxisLabel]="yAxisLabel ">
             </ngx-charts-bar-vertical>
         </div>
-        <div class="col s6">
-            <ngx-charts-bar-horizontal [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar2" [gradient]="gradient" [xAxis]="showXAxisSer" [yAxis]="showYAxisSer" [legend]="showLegendSer" [showXAxisLabel]="showXAxisLabelSer" [showYAxisLabel]="showYAxisLabelSer"
+        <div class="col s12" *ngIf="mostrarGrafica('2')">
+            <ngx-charts-bar-vertical id="2"  [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar2" [gradient]="gradient" [xAxis]="showXAxisSer" [yAxis]="showYAxisSer" [legend]="showLegendSer" [showXAxisLabel]="showXAxisLabelSer" [showYAxisLabel]="showYAxisLabelSer"
+                [xAxisLabel]="xAxisLabelSer" [yAxisLabel]="yAxisLabelSer">
+            </ngx-charts-bar-vertical>
+
+        </div>
+        <div class="col s12" *ngIf="mostrarGrafica('3')">
+            <ngx-charts-bar-horizontal  [view]=" view " [scheme]="colorScheme" [results]="labelStringDataFirschar " [gradient]="gradient " [xAxis]="showXAxis " [yAxis]="showYAxis " [legend]="showLegend " [showXAxisLabel]="showXAxisLabel " [showYAxisLabel]="showYAxisLabel
+            " [xAxisLabel]="xAxisLabel " [yAxisLabel]="yAxisLabel ">
+            </ngx-charts-bar-horizontal>
+        </div>
+        <div class="col s12" *ngIf="mostrarGrafica('4')">
+            <ngx-charts-bar-horizontal  [view]="view" [scheme]="colorScheme" [results]="labelStringDataFirschar2" [gradient]="gradient" [xAxis]="showXAxisSer" [yAxis]="showYAxisSer" [legend]="showLegendSer" [showXAxisLabel]="showXAxisLabelSer" [showYAxisLabel]="showYAxisLabelSer"
                 [xAxisLabel]="xAxisLabelSer" [yAxisLabel]="yAxisLabelSer">
             </ngx-charts-bar-horizontal>
 

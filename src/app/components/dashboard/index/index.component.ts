@@ -27,15 +27,12 @@ export class IndexComponent implements OnInit {
   showYAxisLabelSer = true;
   yAxisLabelSer = 'Servicios Creados';
   labelStringDataFirschar2: any[];
-
   gradientpie = false;
-
-
   showLabels = true;
   isDoughnut = false;
   legendPosition = 'below';
   labelStringDataFirschar: any[];
-  view: any[] = [500, 400];
+  view: any[] = [1080, 480];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
@@ -43,6 +40,7 @@ export class IndexComponent implements OnInit {
   showXAxisLabel = true;
   xAxisLabel = 'Categoria';
   showYAxisLabel = true;
+  graficaseleccionada :string="1";
   yAxisLabel = 'Servicios \n creados';
   colorScheme = {
     domain: ['#994df7', '#ec4391', '#357e5f', '#e8f74d', '#AAAAAA']
@@ -56,11 +54,12 @@ export class IndexComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    $('select').formSelect();
     $('.carousel.carousel-slider').carousel({
       fullWidth: true,
       indicators: true
     });
-
+ 
     const meses = [
       'January',
       'February',
@@ -135,7 +134,10 @@ export class IndexComponent implements OnInit {
 
     console.log(this.labelStringDataFirschar);
   }
-
+  mostrarGrafica( id:string){
+    console.log(this.graficaseleccionada==id)
+    return this.graficaseleccionada==id
+  }
 
 }
 /* tslint:enable*/
