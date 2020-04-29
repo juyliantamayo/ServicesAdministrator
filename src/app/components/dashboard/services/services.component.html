@@ -11,8 +11,11 @@
             <div>
                 <mat-form-field (click)="abrirFiltro() " style="width: 100%;">
                     <mat-chip-list #chipList>
-                        <mat-chip *ngFor="let item of this.stringFiltro; let i=index" [removable]="true"
-                            (removed)="eliminarfiltro(item)">
+                        <mat-chip *ngIf="this.stringFiltro.length==0" (click)="abrirFiltro() ">
+                            Agregar Filtro
+                            <mat-icon>add</mat-icon>
+                        </mat-chip>
+                        <mat-chip *ngFor="let item of this.stringFiltro; let i=index" [removable]="true" (removed)="eliminarfiltro(item)">
                             {{valueStringchips(item)}}
                             <mat-icon matChipRemove>cancel</mat-icon>
                         </mat-chip>
@@ -31,8 +34,7 @@
                                         </select>
                                     </div>
                                     <div class="input-field col s6">
-                                        <input disabled id="disabled" type="text" class="validate"
-                                            [(ngModel)]="this.filtrovalue">
+                                        <input disabled id="disabled" type="text" class="validate" [(ngModel)]="this.filtrovalue">
                                         <label for="disabled"></label>
                                     </div>
                                 </div>
@@ -69,8 +71,7 @@
                         <h2>Usuario:</h2>
                         <div class="row">
                             <div class="col s12 m4 l3">
-                                <img class="responsive-img" width="100%" height="100%"
-                                    src="{{this.UsersMap.get(item.userUid).imageURL}}" alt="">
+                                <img class="responsive-img" width="100%" height="100%" src="{{this.UsersMap.get(item.userUid).imageURL}}" alt="">
                             </div>
                             <div class="col s12 m4 l9">
                                 <h3><b>Nombre:</b> {{this.UsersMap.get(item.userUid).name}}</h3>
@@ -81,8 +82,8 @@
                         <div class="row">
                             <div class="col s12 m12 l12">
                                 <h3><b>Email:</b> {{this.UsersMap.get(item.userUid).email}}</h3>
-                                <h3><b>Fecha de nacimiento:</b>
-                                    {{this.getDate(this.UsersMap.get(item.userUid).birthDay)}}</h3>
+                                <h3><b>Fecha de nacimiento:</b> {{this.getDate(this.UsersMap.get(item.userUid).birthDay)}}
+                                </h3>
                             </div>
 
                         </div>
@@ -126,10 +127,7 @@
                         <div class="modal-content">
                             <h1>Eliminar servicio</h1>
                             <p>
-                                Al eliminar este servicio, esta deshabilitandolo.
-                                Es decir, quedará en la base de datos pero no se podrá usar, hasta
-                                volverlo a habilitar.
-                                ¿Esta de seguro de eliminar este servicio?
+                                Al eliminar este servicio, esta deshabilitandolo. Es decir, quedará en la base de datos pero no se podrá usar, hasta volverlo a habilitar. ¿Esta de seguro de eliminar este servicio?
                             </p>
                         </div>
                         <div class="modal-footer">

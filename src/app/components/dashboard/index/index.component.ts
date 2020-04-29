@@ -54,6 +54,7 @@ export class IndexComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.auth.verifiLoginUser();
     $('select').formSelect();
     $('.carousel.carousel-slider').carousel({
       fullWidth: true,
